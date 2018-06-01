@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.hm.iou.database.table.IouComment;
 import com.hm.iou.database.table.IouData;
+import com.orm.SugarContext;
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -78,7 +79,6 @@ public class IouDbHelper {
         }
 
         String whereClause = sb.toString();
-        Log.d("SQL", whereClause);
         String orderBy = orderByCreateTime ? "last_modify_time desc" : "schedule_return_date desc";
         List<IouData> list = SugarRecord.find(IouData.class, whereClause, null, null,  orderBy, null);
         return list;
@@ -126,4 +126,39 @@ public class IouDbHelper {
                 new String[] {iouKind + "", iouStatus + ""});
     }
 
+    public static synchronized long queryCountOfIou(List<Integer> iouKindList) {
+        if (iouKindList == null || iouKindList.isEmpty()) {
+            return SugarRecord.count(IouData.class);
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("iou_kind in (");
+        int c = iouKindList.size();
+        for (int i = 0; i < c; i++) {
+            sb.append(iouKindList.get(i));
+            if (i < c - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append(")");
+
+        return SugarRecord.count(IouData.class, sb.toString(), null);
+    }
+
+    public static synchronized long queryCountOfIou(List<Integer> iouKindList, int iouStatus) {
+        if (iouKindList == null || iouKindList.isEmpty()) {
+            return SugarRecord.count(IouData.class);
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("iou_kind in (");
+        int c = iouKindList.size();
+        for (int i = 0; i < c; i++) {
+            sb.append(iouKindList.get(i));
+            if (i < c - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append(")");
+        sb.append(" and iou_status = ").append(iouStatus);
+        return SugarRecord.count(IouData.class, sb.toString(), null);
+    }
 }
