@@ -236,4 +236,34 @@ public class IouDbHelper {
         sb.append(" and iou_status = ").append(iouStatus);
         return SugarRecord.count(IouData.class, sb.toString(), null);
     }
+
+    public static synchronized long queryCountOfIou(List<Integer> iouKindList, List<Integer> iouStatusList) {
+        if (iouKindList == null || iouKindList.isEmpty()) {
+            return SugarRecord.count(IouData.class);
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("iou_kind in (");
+        int c = iouKindList.size();
+        for (int i = 0; i < c; i++) {
+            sb.append(iouKindList.get(i));
+            if (i < c - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append(")");
+
+        if (iouStatusList != null && iouStatusList.size() > 0) {
+            sb.append(" and ");
+            sb.append("iou_status in (");
+            c = iouStatusList.size();
+            for (int i=0; i<c; i++) {
+                sb.append(iouStatusList.get(i));
+                if (i < c - 1) {
+                    sb.append(",");
+                }
+            }
+            sb.append(")");
+        }
+        return SugarRecord.count(IouData.class, sb.toString(), null);
+    }
 }
