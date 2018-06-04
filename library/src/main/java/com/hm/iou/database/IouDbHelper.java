@@ -1,6 +1,7 @@
 package com.hm.iou.database;
 
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.hm.iou.database.table.IouComment;
@@ -45,13 +46,15 @@ public class IouDbHelper {
      * 查询借条数据
      *
      * @param iouKindList 借条类型，不能为空
-     * @param iouStatusList 借条状态，不穿则查询所有状态
-     * @param orderByCreateTime true-根据收录时间排序
+     * @param iouStatusList 借条状态，不传则查询所有状态
+     * @param orderByCreateTime "asc"：表示按创建或修改时间升序排列，"desc"：表示按降序排列，null表示不排列
+     * @param orderByReturnDate "asc"：按归还时间升序排列，"desc"：表示按降序排列，null表示不排列
      * @return
      */
     public static synchronized List<IouData> queryIOUListByStatus(List<Integer> iouKindList,
                                                                   List<Integer> iouStatusList,
-                                                                  boolean orderByCreateTime) {
+                                                                  String orderByCreateTime,
+                                                                  String orderByReturnDate) {
         if (iouKindList == null || iouKindList.isEmpty()) {
             return null;
         }
@@ -77,9 +80,81 @@ public class IouDbHelper {
             }
             sb.append(")");
         }
-
         String whereClause = sb.toString();
-        String orderBy = orderByCreateTime ? "last_modify_time desc" : "schedule_return_date desc";
+
+        String orderBy = null;
+        if (!TextUtils.isEmpty(orderByCreateTime)) {
+            if ("asc".equals(orderByCreateTime.toLowerCase())) {
+                orderBy = "last_modify_time asc";
+            } else if ("desc".equals(orderByCreateTime.toLowerCase())) {
+                orderBy = "last_modify_time desc";
+            }
+        }
+
+        if (!TextUtils.isEmpty(orderByReturnDate)) {
+            if ("asc".equals(orderByReturnDate.toLowerCase())) {
+                orderBy = TextUtils.isEmpty(orderBy) ? "" : (orderBy + ",");
+                orderBy = orderBy + "schedule_return_date asc";
+            } else if ("desc".equals(orderByReturnDate.toLowerCase())) {
+                orderBy = TextUtils.isEmpty(orderBy) ? "" : (orderBy + ",");
+                orderBy = orderBy + "schedule_return_date desc";
+            }
+        }
+
+        List<IouData> list = SugarRecord.find(IouData.class, whereClause, null, null,  orderBy, null);
+        return list;
+    }
+
+    /**
+     * 查询借条数据
+     *
+     * @param iouKindList 借条类型，不能为空
+     * @param status 借条状态
+     * @param orderByCreateTime "asc"：表示按创建或修改时间升序排列，"desc"：表示按降序排列，null表示不排列
+     * @param orderByReturnDate "asc"：按归还时间升序排列，"desc"：表示按降序排列，null表示不排列
+     * @return
+     */
+    public static synchronized List<IouData> queryIOUListByStatus(List<Integer> iouKindList,
+                                                                  int status,
+                                                                  String orderByCreateTime,
+                                                                  String orderByReturnDate) {
+        if (iouKindList == null || iouKindList.isEmpty()) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("iou_kind in (");
+        int c = iouKindList.size();
+        for (int i = 0; i < c; i++) {
+            sb.append(iouKindList.get(i));
+            if (i < c - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append(")");
+        sb.append(" and ");
+        sb.append("iou_status = ").append(status);
+        String whereClause = sb.toString();
+
+
+        String orderBy = null;
+        if (!TextUtils.isEmpty(orderByCreateTime)) {
+            if ("asc".equals(orderByCreateTime.toLowerCase())) {
+                orderBy = "last_modify_time asc";
+            } else if ("desc".equals(orderByCreateTime.toLowerCase())) {
+                orderBy = "last_modify_time desc";
+            }
+        }
+
+        if (!TextUtils.isEmpty(orderByReturnDate)) {
+            if ("asc".equals(orderByReturnDate.toLowerCase())) {
+                orderBy = TextUtils.isEmpty(orderBy) ? "" : (orderBy + ",");
+                orderBy = orderBy + "schedule_return_date asc";
+            } else if ("desc".equals(orderByReturnDate.toLowerCase())) {
+                orderBy = TextUtils.isEmpty(orderBy) ? "" : (orderBy + ",");
+                orderBy = orderBy + "schedule_return_date desc";
+            }
+        }
+
         List<IouData> list = SugarRecord.find(IouData.class, whereClause, null, null,  orderBy, null);
         return list;
     }
