@@ -43,10 +43,33 @@ public class IouDbHelper {
     }
 
     /**
+     * 通过借条id查询
+     *
+     * @param iouId 借条id
+     * @return
+     */
+    public static synchronized IouData queryIOUById(String iouId) {
+        List<IouData> list = SugarRecord.find(IouData.class, "iou_id = ?", new String[]{iouId});
+        if (list == null || list.isEmpty())
+            return null;
+        return list.get(0);
+    }
+
+    /**
+     * 通过借条id删除数据
+     *
+     * @param iouId 借条id
+     * @return
+     */
+    public static synchronized int deleteIOUById(String iouId) {
+        return SugarRecord.deleteAll(IouData.class, "iou_id = ?", new String[]{iouId});
+    }
+
+    /**
      * 查询借条数据
      *
-     * @param iouKindList 借条类型，不能为空
-     * @param iouStatusList 借条状态，不传则查询所有状态
+     * @param iouKindList       借条类型，不能为空
+     * @param iouStatusList     借条状态，不传则查询所有状态
      * @param orderByCreateTime "asc"：表示按创建或修改时间升序排列，"desc"：表示按降序排列，null表示不排列
      * @param orderByReturnDate "asc"：按归还时间升序排列，"desc"：表示按降序排列，null表示不排列
      * @return
@@ -72,7 +95,7 @@ public class IouDbHelper {
             sb.append(" and ");
             sb.append("iou_status in (");
             c = iouStatusList.size();
-            for (int i=0; i<c; i++) {
+            for (int i = 0; i < c; i++) {
                 sb.append(iouStatusList.get(i));
                 if (i < c - 1) {
                     sb.append(",");
@@ -101,15 +124,15 @@ public class IouDbHelper {
             }
         }
 
-        List<IouData> list = SugarRecord.find(IouData.class, whereClause, null, null,  orderBy, null);
+        List<IouData> list = SugarRecord.find(IouData.class, whereClause, null, null, orderBy, null);
         return list;
     }
 
     /**
      * 查询借条数据
      *
-     * @param iouKindList 借条类型，不能为空
-     * @param status 借条状态
+     * @param iouKindList       借条类型，不能为空
+     * @param status            借条状态
      * @param orderByCreateTime "asc"：表示按创建或修改时间升序排列，"desc"：表示按降序排列，null表示不排列
      * @param orderByReturnDate "asc"：按归还时间升序排列，"desc"：表示按降序排列，null表示不排列
      * @return
@@ -155,7 +178,7 @@ public class IouDbHelper {
             }
         }
 
-        List<IouData> list = SugarRecord.find(IouData.class, whereClause, null, null,  orderBy, null);
+        List<IouData> list = SugarRecord.find(IouData.class, whereClause, null, null, orderBy, null);
         return list;
     }
 
@@ -192,13 +215,13 @@ public class IouDbHelper {
     /**
      * 查询借条数
      *
-     * @param iouKind 借条类型
+     * @param iouKind   借条类型
      * @param iouStatus 借条状态
      * @return
      */
     public static synchronized long queryCountOfIou(int iouKind, int iouStatus) {
         return SugarRecord.count(IouData.class, "iou_kind = ? and iou_status = ?",
-                new String[] {iouKind + "", iouStatus + ""});
+                new String[]{iouKind + "", iouStatus + ""});
     }
 
     public static synchronized long queryCountOfIou(List<Integer> iouKindList) {
@@ -256,7 +279,7 @@ public class IouDbHelper {
             sb.append(" and ");
             sb.append("iou_status in (");
             c = iouStatusList.size();
-            for (int i=0; i<c; i++) {
+            for (int i = 0; i < c; i++) {
                 sb.append(iouStatusList.get(i));
                 if (i < c - 1) {
                     sb.append(",");
