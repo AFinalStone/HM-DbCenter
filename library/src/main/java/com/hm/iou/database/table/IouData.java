@@ -59,6 +59,8 @@ public class IouData extends SugarRecord {
 
     private String transDeadLine;       //最晚汇出时间
 
+    private int thingsType;             //区分钱、物
+
     @Ignore
     private Map<String, String> attachFileMap;  //图片
 
@@ -265,6 +267,14 @@ public class IouData extends SugarRecord {
 
     public void setAttachFileMap(Map<String, String> attachFileMap) {
         this.attachFileMap = attachFileMap;
+    }
+
+    public int getThingsType() {
+        return thingsType;
+    }
+
+    public void setThingsType(int thingsType) {
+        this.thingsType = thingsType;
     }
 
     public String getFileList() {
