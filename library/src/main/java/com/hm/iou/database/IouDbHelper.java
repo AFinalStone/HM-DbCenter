@@ -192,6 +192,10 @@ public class IouDbHelper {
         return SugarRecord.update(data);
     }
 
+    public static synchronized long saveIOUData(IouData data) {
+        return data.save();
+    }
+
     /**
      * 删除借条数据
      *

@@ -76,4 +76,14 @@ public class CommentDbHelper {
         return data.update();
     }
 
+    /**
+     * 保存新的评论到数据库
+     *
+     * @param data
+     * @return
+     */
+    public static synchronized long saveComment(IouComment data) {
+        return data.save();
+    }
+
 }
