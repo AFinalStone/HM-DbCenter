@@ -6,8 +6,10 @@ import android.view.View;
 
 import com.hm.iou.database.CommentDbHelper;
 import com.hm.iou.database.IouDbHelper;
+import com.hm.iou.database.MsgCenterDbHelper;
 import com.hm.iou.database.table.IouComment;
 import com.hm.iou.database.table.IouData;
+import com.hm.iou.database.table.MsgCenterDbData;
 import com.hm.iou.logger.Logger;
 import com.hm.iou.network.HttpReqManager;
 import com.hm.iou.sharedata.UserManager;
@@ -90,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         findViewById(R.id.btn_test8).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,12 +106,89 @@ public class MainActivity extends AppCompatActivity {
                 iouStatusList.add(1);
                 iouStatusList.add(2);
                 iouStatusList.add(5);
-                List<IouData> list = IouDbHelper.queryIOUListByStatus(iouKindList, iouStatusList, true);
-
-                System.out.println("size = " + (list != null ? list.size() : 0));
+//                List<IouData> list = IouDbHelper.queryIOUListByStatus(iouKindList, iouStatusList, true);
+//                System.out.println("size = " + (list != null ? list.size() : 0));
                 System.out.println("============");
             }
         });
+
+        findViewById(R.id.btn_test3_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<MsgCenterDbData> list = new ArrayList<>();
+                MsgCenterDbData data = new MsgCenterDbData();
+                data.setAutoId("1");
+                data.setTitle("1");
+                data.setType(1);
+                data.setImageUrl("1");
+                data.setPushDate("2018-06-05 12:30:56");
+                MsgCenterDbHelper.addOrUpdateDataToMsgCenter(data);
+                list.add(data);
+                data = new MsgCenterDbData();
+                data.setAutoId("2");
+                data.setTitle("2");
+                data.setType(2);
+                data.setImageUrl("2");
+                data.setPushDate("2018-05-05 12:30:56");
+                MsgCenterDbHelper.addOrUpdateDataToMsgCenter(data);
+                list.add(data);
+                data = new MsgCenterDbData();
+                data.setAutoId("3");
+                data.setTitle("3");
+                data.setType(3);
+                data.setImageUrl("3");
+                data.setPushDate("2018-07-05 12:30:56");
+                MsgCenterDbHelper.addOrUpdateDataToMsgCenter(data);
+                list.add(data);
+            }
+        });
+        findViewById(R.id.btn_test3_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MsgCenterDbData data = new MsgCenterDbData();
+                data.setAutoId("100");
+                data.setTitle("100");
+                data.setType(100);
+                data.setImageUrl("100");
+                data.setRead(true);
+                data.setPushDate("2018-06-05 12:31:56");
+                data.setCommuniqueIntro("系统维护");
+                MsgCenterDbHelper.addOrUpdateDataToMsgCenter(data);
+            }
+        });
+        findViewById(R.id.btn_test3_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long count = MsgCenterDbHelper.queryMsgCenterNoReadCount();
+                System.out.println("未读消息数量" + count);
+                System.out.println("============");
+            }
+        });
+        findViewById(R.id.btn_test3_4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<MsgCenterDbData> list = MsgCenterDbHelper.queryMsgCenterListData();
+                for (MsgCenterDbData bean : list) {
+                    System.out.println("消息内容" + bean.toString());
+                    System.out.println("============");
+                }
+            }
+        });
+        findViewById(R.id.btn_test3_5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MsgCenterDbHelper.deleteMsgCenterAllListData();
+            }
+        });
+        findViewById(R.id.btn_test3_6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MsgCenterDbData data = MsgCenterDbHelper.queryMsgCenterItemByAutoId("100");
+                System.out.println("消息内容" + data.toString());
+                System.out.println("============");
+            }
+        });
+
     }
 
 
