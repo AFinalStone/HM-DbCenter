@@ -20,7 +20,7 @@ public class MsgCenterDbData extends SugarRecord {
     private String imageUrl;     //广告，头条，活动的缩略图
     private String title;        //标题
     private String infoLinkUrl;  //广告，头条，活动详情页的具体链接地址
-    private String communiqueIntro;//官方公告简介
+    private String notice;       //官方公告简介
     private boolean isRead = false;//是否阅览过
 
     public String getAutoId() {
@@ -71,12 +71,12 @@ public class MsgCenterDbData extends SugarRecord {
         this.infoLinkUrl = infoLinkUrl;
     }
 
-    public String getCommuniqueIntro() {
-        return communiqueIntro;
+    public String getNotice() {
+        return notice;
     }
 
-    public void setCommuniqueIntro(String communiqueIntro) {
-        this.communiqueIntro = communiqueIntro;
+    public void setNotice(String notice) {
+        this.notice = notice;
     }
 
     public boolean isRead() {
@@ -87,4 +87,17 @@ public class MsgCenterDbData extends SugarRecord {
         isRead = read;
     }
 
+    @Override
+    public String toString() {
+        return "MsgCenterDbData{" +
+                "autoId='" + autoId + '\'' +
+                ", type=" + type +
+                ", pushDate='" + pushDate + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", title='" + title + '\'' +
+                ", infoLinkUrl='" + infoLinkUrl + '\'' +
+                ", notice='" + notice + '\'' +
+                ", isRead=" + isRead +
+                '}';
+    }
 }

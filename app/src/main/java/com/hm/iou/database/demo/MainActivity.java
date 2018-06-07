@@ -145,15 +145,15 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test3_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MsgCenterDbData data = new MsgCenterDbData();
-                data.setAutoId("100");
-                data.setTitle("100");
-                data.setType(100);
-                data.setImageUrl("100");
-                data.setRead(true);
-                data.setPushDate("2018-06-05 12:31:56");
-                data.setCommuniqueIntro("系统维护");
-                MsgCenterDbHelper.addOrUpdateDataToMsgCenter(data);
+//                MsgCenterDbData data = new MsgCenterDbData();
+//                data.setAutoId("100");
+//                data.setTitle("100");
+//                data.setType(100);
+//                data.setImageUrl("100");
+//                data.setRead(true);
+//                data.setPushDate("2018-06-05 12:31:56");
+//                data.setNotice("系统维护");
+                MsgCenterDbHelper.addOrUpdateNoticeToCache("100", "2018-06-05 12:31:56", "系统维护");
             }
         });
         findViewById(R.id.btn_test3_3).setOnClickListener(new View.OnClickListener() {
@@ -183,8 +183,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test3_6).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MsgCenterDbData data = MsgCenterDbHelper.queryMsgCenterItemByAutoId("100");
-                System.out.println("消息内容" + data.toString());
+                boolean flag = MsgCenterDbHelper.queryNoticeById("100");
+                System.out.println("是否存在" + flag);
                 System.out.println("============");
             }
         });

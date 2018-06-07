@@ -17,25 +17,6 @@ import java.util.List;
  */
 public class MsgCenterDbHelper {
 
-//
-//    /**
-//     * 添加新的消息列表到消息中心
-//     *
-//     * @param list
-//     * @return
-//     */
-//    public static synchronized void addOrUpdateDataToMsgCenter(List<MsgCenterDbData> list) {
-//        List<MsgCenterDbData> listCache = queryMsgCenterListData();
-//        if (listCache != null) {
-//            listCache.addAll(list);
-//            saveOrUpdateDataToMsgCenter(listCache);
-//        } else {
-//            if (list != null) {
-//                saveOrUpdateDataToMsgCenter(list);
-//            }
-//        }
-//    }
-
     /**
      * 添加或更新消息中心消息列表
      *
@@ -65,26 +46,27 @@ public class MsgCenterDbHelper {
      *
      * @param noticeId
      * @param pushDate
-     * @param communiqueIntro
+     * @param notice
      */
-    public static synchronized void addOrUpdateCommuniqueToCache(String noticeId, String pushDate, String communiqueIntro) {
+    public static synchronized void addOrUpdateNoticeToCache(String noticeId, String pushDate, String notice) {
         MsgCenterDbData dbData = new MsgCenterDbData();
-        noticeId = "communique_" + noticeId;
+        noticeId = "notice_" + noticeId;//防止和消息中心其他类型的id重复
         dbData.setType(100); //这里主要是为了在消息中心获取的时候，进行分类比较使用
         dbData.setAutoId(noticeId);
         dbData.setPushDate(pushDate);
-        dbData.setCommuniqueIntro(communiqueIntro);
+        dbData.setRead(true);
+        dbData.setNotice(notice);
         addOrUpdateDataToMsgCenter(dbData);
     }
 
     /**
-     * 校验当前公告是否存在
+     * 根据光放公告id查询官方公告
      *
      * @param noticeId 官方公告id
      * @return
      */
-    public static synchronized boolean queryCommuniqueHaveExitById(String noticeId) {
-        noticeId = "communique_" + noticeId;
+    public static synchronized boolean queryNoticeById(String noticeId) {
+        noticeId = "notice_" + noticeId;//防止和消息中心其他类型的id重复
         return !(null == queryMsgCenterItemByAutoId(noticeId));
     }
 
@@ -95,19 +77,6 @@ public class MsgCenterDbHelper {
      */
     public static synchronized long queryMsgCenterNoReadCount() {
         return SugarRecord.count(MsgCenterDbData.class, "is_read = 0", null);
-    }
-
-    /**
-     * 通过id查询消息是否存在
-     *
-     * @param autoId
-     * @return
-     */
-    public static synchronized MsgCenterDbData queryMsgCenterItemByAutoId(String autoId) {
-        List<MsgCenterDbData> list = SugarRecord.find(MsgCenterDbData.class, "auto_id = ?", autoId);
-        if (list == null || list.isEmpty())
-            return null;
-        return list.get(0);
     }
 
     /**
@@ -144,5 +113,17 @@ public class MsgCenterDbHelper {
         return SugarRecord.deleteAll(MsgCenterDbData.class);
     }
 
+    /**
+     * 通过id查询消息是否存在
+     *
+     * @param autoId
+     * @return
+     */
+    private static synchronized MsgCenterDbData queryMsgCenterItemByAutoId(String autoId) {
+        List<MsgCenterDbData> list = SugarRecord.find(MsgCenterDbData.class, "auto_id = ?", autoId);
+        if (list == null || list.isEmpty())
+            return null;
+        return list.get(0);
+    }
 
 }

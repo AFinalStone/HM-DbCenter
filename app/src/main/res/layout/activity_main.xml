@@ -100,7 +100,7 @@
             android:id="@+id/btn_test3_6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="查询消息是否存在"
+            android:text="查询官方公告是否存在"
             android:textColor="@color/uikit_cyan" />
     </LinearLayout>
 </ScrollView>
