@@ -32,7 +32,7 @@ public class IouData extends SugarRecord {
     private String borrowerAccount;     //借到人收款账号
 
     private double amount;              //总金额
-    private int amountPerMonth;         //每月还款额
+    private double amountPerMonth;         //每月还款额
     private double interest;            //利息合计
 
     private String createTime;          //创建时间
@@ -117,11 +117,11 @@ public class IouData extends SugarRecord {
         this.amount = amount;
     }
 
-    public int getAmountPerMonth() {
+    public double getAmountPerMonth() {
         return amountPerMonth;
     }
 
-    public void setAmountPerMonth(int amountPerMonth) {
+    public void setAmountPerMonth(double amountPerMonth) {
         this.amountPerMonth = amountPerMonth;
     }
 
