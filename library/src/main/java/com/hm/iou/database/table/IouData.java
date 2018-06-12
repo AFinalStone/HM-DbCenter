@@ -69,6 +69,16 @@ public class IouData extends SugarRecord {
     @Ignore
     private List<FileEntity> files;
 
+    private String justiceId;           //电子借、收条公正id
+    private String justiceOrgn;         //公正机构
+    private String justiceSealId;       //公正的签章id
+    private String justiceShowId;       //showId
+    private String justiceTime;         //电子借/收条的存证时间
+    private String sceneEvId;           //电子借/收条进行公正的出证凭证 ,
+    private String shareUrl;
+    private int recvWay;             //收款方式
+    private String recvWayName;
+
     public String getIouId() {
         return iouId;
     }
@@ -286,6 +296,78 @@ public class IouData extends SugarRecord {
 
     public void setFileList(String fileList) {
         this.fileList = fileList;
+    }
+
+    public String getJusticeId() {
+        return justiceId;
+    }
+
+    public void setJusticeId(String justiceId) {
+        this.justiceId = justiceId;
+    }
+
+    public String getJusticeOrgn() {
+        return justiceOrgn;
+    }
+
+    public void setJusticeOrgn(String justiceOrgn) {
+        this.justiceOrgn = justiceOrgn;
+    }
+
+    public String getJusticeSealId() {
+        return justiceSealId;
+    }
+
+    public void setJusticeSealId(String justiceSealId) {
+        this.justiceSealId = justiceSealId;
+    }
+
+    public String getJusticeShowId() {
+        return justiceShowId;
+    }
+
+    public void setJusticeShowId(String justiceShowId) {
+        this.justiceShowId = justiceShowId;
+    }
+
+    public String getJusticeTime() {
+        return justiceTime;
+    }
+
+    public void setJusticeTime(String justiceTime) {
+        this.justiceTime = justiceTime;
+    }
+
+    public String getSceneEvId() {
+        return sceneEvId;
+    }
+
+    public void setSceneEvId(String sceneEvId) {
+        this.sceneEvId = sceneEvId;
+    }
+
+    public String getShareUrl() {
+        return shareUrl;
+    }
+
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
+    }
+
+    public int getRecvWay() {
+        return recvWay;
+    }
+
+    public void setRecvWay(int recvWay) {
+        this.recvWay = recvWay;
+    }
+
+    public String getRecvWayName() {
+        return recvWayName;
+    }
+
+    public void setRecvWayName(String recvWayName) {
+        this.recvWayName = recvWayName;
     }
 
     /**
