@@ -79,6 +79,12 @@ public class IouData extends SugarRecord {
     private int recvWay;             //收款方式
     private String recvWayName;
 
+    private String idCardNum;       //身份证尾号
+    private int remitWay;           //汇款方式
+    private String remitWayName;    //汇款方式名称
+    private String othersMobile;
+
+
     public String getIouId() {
         return iouId;
     }
@@ -368,6 +374,38 @@ public class IouData extends SugarRecord {
 
     public void setRecvWayName(String recvWayName) {
         this.recvWayName = recvWayName;
+    }
+
+    public String getIdCardNum() {
+        return idCardNum;
+    }
+
+    public void setIdCardNum(String idCardNum) {
+        this.idCardNum = idCardNum;
+    }
+
+    public int getRemitWay() {
+        return remitWay;
+    }
+
+    public void setRemitWay(int remitWay) {
+        this.remitWay = remitWay;
+    }
+
+    public String getRemitWayName() {
+        return remitWayName;
+    }
+
+    public void setRemitWayName(String remitWayName) {
+        this.remitWayName = remitWayName;
+    }
+
+    public String getOthersMobile() {
+        return othersMobile;
+    }
+
+    public void setOthersMobile(String othersMobile) {
+        this.othersMobile = othersMobile;
     }
 
     /**
