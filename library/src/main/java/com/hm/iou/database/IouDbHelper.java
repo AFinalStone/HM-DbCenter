@@ -197,16 +197,6 @@ public class IouDbHelper {
     }
 
     /**
-     * 删除借条数据
-     *
-     * @param iouId 借条id
-     * @return
-     */
-    public static synchronized int deleteIOUData(String iouId) {
-        return SugarRecord.deleteAll(IouData.class, "iou_id = ?", iouId);
-    }
-
-    /**
      * 查询借条数
      *
      * @param iouKind 借条类型
