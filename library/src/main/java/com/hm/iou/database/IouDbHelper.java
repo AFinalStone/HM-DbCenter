@@ -56,6 +56,19 @@ public class IouDbHelper {
     }
 
     /**
+     * 通过借条id查询
+     *
+     * @param justiceId 借条公证id
+     * @return
+     */
+    public static synchronized IouData queryIOUByJusticeId(String justiceId) {
+        List<IouData> list = SugarRecord.find(IouData.class, "justice_id = ?", new String[]{justiceId});
+        if (list == null || list.isEmpty())
+            return null;
+        return list.get(0);
+    }
+
+    /**
      * 通过借条id删除数据
      *
      * @param iouId 借条id
