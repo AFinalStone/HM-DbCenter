@@ -56,6 +56,7 @@ public class IouData extends SugarRecord {
 
     private String thingsName;          //物品名称
     private String illustrationId;      //娱乐借条插画id
+    private String illustrationUrl;      //娱乐借条插画id
 
     private String transDeadLine;       //最晚汇出时间
 
@@ -269,6 +270,14 @@ public class IouData extends SugarRecord {
         this.illustrationId = illustrationId;
     }
 
+    public String getIllustrationUrl() {
+        return illustrationUrl;
+    }
+
+    public void setIllustrationUrl(String illustrationUrl) {
+        this.illustrationUrl = illustrationUrl;
+    }
+
     public String getTransDeadLine() {
         return transDeadLine;
     }
@@ -441,7 +450,7 @@ public class IouData extends SugarRecord {
             try {
                 JSONArray arr = new JSONArray(fileList);
                 List<FileEntity> list = new ArrayList<>();
-                for (int i = 0; i<arr.length(); i++) {
+                for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.getJSONObject(i);
                     FileEntity entity = new FileEntity();
                     entity.id = obj.getString("id");
