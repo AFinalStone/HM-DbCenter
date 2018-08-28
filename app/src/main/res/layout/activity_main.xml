@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,6 +59,7 @@
             android:layout_height="wrap_content"
             android:text="测试sql" />
 
+
         <Button
             android:id="@+id/btn_test3_1"
             android:layout_width="match_parent"
@@ -102,5 +101,41 @@
             android:layout_height="wrap_content"
             android:text="查询官方公告是否存在"
             android:textColor="@color/uikit_cyan" />
+
+        <Button
+            android:id="@+id/btn_test4_1_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="插入记债本数据"
+            android:textColor="@color/uikit_red" />
+
+        <Button
+            android:id="@+id/btn_test4_2_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查询全部记债本数据"
+            android:textColor="@color/uikit_red" />
+
+        <Button
+            android:id="@+id/btn_test4_3_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="更新单个记债本数据"
+            android:textColor="@color/uikit_red" />
+
+        <Button
+            android:id="@+id/btn_test4_4_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="删除单个记债本数据"
+            android:textColor="@color/uikit_red" />
+
+        <Button
+            android:id="@+id/btn_test4_5_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="清空全部记债本数据"
+            android:textColor="@color/uikit_red" />
+
     </LinearLayout>
 </ScrollView>

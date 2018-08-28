@@ -1,12 +1,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hm.iou.database" >
+    package="com.hm.iou.database">
 
-    <application >
+    <application>
 
-        <meta-data android:name="DATABASE" android:value="jietiao.db" />
-        <meta-data android:name="VERSION" android:value="2" />
-        <meta-data android:name="QUERY_LOG" android:value="false" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.hm.iou.database.table" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="jietiao.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="3" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="false" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.hm.iou.database.table" />
 
     </application>
 
