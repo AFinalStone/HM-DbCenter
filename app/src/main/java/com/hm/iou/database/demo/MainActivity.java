@@ -1,7 +1,7 @@
 package com.hm.iou.database.demo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -203,8 +203,31 @@ public class MainActivity extends AppCompatActivity {
                     debtBookDbData.setIfAddStar(1);
                     debtBookDbData.setIfHaveImg(1);
                     debtBookDbData.setLocationInfo("杭州市 西湖区");
+                    debtBookDbData.setType(0);
                     DebtBookDbHelper.insertOrUpdateDebtBook(debtBookDbData);
                 }
+                //插入人情债
+                DebtBookDbData debtBookDbData = new DebtBookDbData();
+                debtBookDbData.setAutoId(String.format("00%d", 10));
+                debtBookDbData.setCreateTime("2018.08.28 13:55:45");
+                debtBookDbData.setContent("记债本正文内容");
+                debtBookDbData.setDebtTime("2018.06.23 03:55:30");
+                debtBookDbData.setIfAddStar(1);
+                debtBookDbData.setIfHaveImg(1);
+                debtBookDbData.setLocationInfo("杭州市 西湖区");
+                debtBookDbData.setType(1);
+                DebtBookDbHelper.insertOrUpdateDebtBook(debtBookDbData);
+                //插入亲情债
+                debtBookDbData = new DebtBookDbData();
+                debtBookDbData.setAutoId(String.format("00%d", 11));
+                debtBookDbData.setCreateTime("2018.08.28 13:55:45");
+                debtBookDbData.setContent("记债本正文内容");
+                debtBookDbData.setDebtTime("2018.06.23 03:55:30");
+                debtBookDbData.setIfAddStar(1);
+                debtBookDbData.setIfHaveImg(1);
+                debtBookDbData.setLocationInfo("杭州市 西湖区");
+                debtBookDbData.setType(2);
+                DebtBookDbHelper.insertOrUpdateDebtBook(debtBookDbData);
             }
         });
         findViewById(R.id.btn_test4_2_query).setOnClickListener(new View.OnClickListener() {
@@ -213,6 +236,14 @@ public class MainActivity extends AppCompatActivity {
                 List<DebtBookDbData> list = DebtBookDbHelper.queryDebtBookAllDataList();
                 for (DebtBookDbData item : list) {
                     Log.d("记债本", "数据: " + item.toString());
+                }
+                list = DebtBookDbHelper.queryDebtBookListByType(1);
+                for (DebtBookDbData item : list) {
+                    Log.d("记债本", "人情债: " + item.toString());
+                }
+                list = DebtBookDbHelper.queryDebtBookListByType(2);
+                for (DebtBookDbData item : list) {
+                    Log.d("记债本", "亲情债: " + item.toString());
                 }
             }
         });

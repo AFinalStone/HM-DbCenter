@@ -75,4 +75,16 @@ public class DebtBookDbHelper {
     public static synchronized List<DebtBookDbData> queryDebtBookAllDataList() {
         return DebtBookDbData.listAll(DebtBookDbData.class);
     }
+
+    /**
+     * 获取类型查询记债本
+     *
+     * @param type TabAll(0, "记债本"), TabHumanFeel(1, "人情债"), TabFamily(2, "亲情债"), TabMoney(3, "金钱债"), TabConvenientlyRecord(4, "随手记");
+     * @return
+     */
+    public static synchronized List<DebtBookDbData> queryDebtBookListByType(int type) {
+        List<DebtBookDbData> list = SugarRecord.find(DebtBookDbData.class, "type = ?",
+                new String[]{String.valueOf(type)}, null, "create_time asc", null);
+        return list;
+    }
 }
