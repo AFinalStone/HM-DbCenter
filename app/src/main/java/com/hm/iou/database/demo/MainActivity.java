@@ -9,7 +9,7 @@ import com.hm.iou.database.CommentDbHelper;
 import com.hm.iou.database.DebtBookDbHelper;
 import com.hm.iou.database.IouDbHelper;
 import com.hm.iou.database.MsgCenterDbHelper;
-import com.hm.iou.database.table.DebtBookItem;
+import com.hm.iou.database.table.DebtBookDbData;
 import com.hm.iou.database.table.IouComment;
 import com.hm.iou.database.table.IouData;
 import com.hm.iou.database.table.MsgCenterDbData;
@@ -195,23 +195,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < 10; i++) {
-                    DebtBookItem debtBookItem = new DebtBookItem();
-                    debtBookItem.setAutoId(String.format("00%d", i));
-                    debtBookItem.setCreateTime("2018.08.28 13:55:45");
-                    debtBookItem.setContent("记债本正文内容");
-                    debtBookItem.setDebtTime("2018.06.23 03:55:30");
-                    debtBookItem.setIfAddStar(1);
-                    debtBookItem.setIfHaveImg(1);
-                    debtBookItem.setLocationInfo("杭州市 西湖区");
-                    DebtBookDbHelper.insertOrUpdateDebtBook(debtBookItem);
+                    DebtBookDbData debtBookDbData = new DebtBookDbData();
+                    debtBookDbData.setAutoId(String.format("00%d", i));
+                    debtBookDbData.setCreateTime("2018.08.28 13:55:45");
+                    debtBookDbData.setContent("记债本正文内容");
+                    debtBookDbData.setDebtTime("2018.06.23 03:55:30");
+                    debtBookDbData.setIfAddStar(1);
+                    debtBookDbData.setIfHaveImg(1);
+                    debtBookDbData.setLocationInfo("杭州市 西湖区");
+                    DebtBookDbHelper.insertOrUpdateDebtBook(debtBookDbData);
                 }
             }
         });
         findViewById(R.id.btn_test4_2_query).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<DebtBookItem> list = DebtBookDbHelper.queryDebtBookAllDataList();
-                for (DebtBookItem item : list) {
+                List<DebtBookDbData> list = DebtBookDbHelper.queryDebtBookAllDataList();
+                for (DebtBookDbData item : list) {
                     Log.d("记债本", "数据: " + item.toString());
                 }
             }
@@ -219,15 +219,15 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test4_3_update).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DebtBookItem debtBookItem = new DebtBookItem();
-                debtBookItem.setAutoId("001");
-                debtBookItem.setCreateTime("2018.08.28 13:55:45");
-                debtBookItem.setContent("记债本正文内容被修改");
-                debtBookItem.setDebtTime("2018.06.23 03:55:30");
-                debtBookItem.setIfAddStar(0);
-                debtBookItem.setIfHaveImg(0);
-                debtBookItem.setLocationInfo("北京市 朝阳区");
-                DebtBookDbHelper.insertOrUpdateDebtBook(debtBookItem);
+                DebtBookDbData debtBookDbData = new DebtBookDbData();
+                debtBookDbData.setAutoId("001");
+                debtBookDbData.setCreateTime("2018.08.28 13:55:45");
+                debtBookDbData.setContent("记债本正文内容被修改");
+                debtBookDbData.setDebtTime("2018.06.23 03:55:30");
+                debtBookDbData.setIfAddStar(0);
+                debtBookDbData.setIfHaveImg(0);
+                debtBookDbData.setLocationInfo("北京市 朝阳区");
+                DebtBookDbHelper.insertOrUpdateDebtBook(debtBookDbData);
             }
         });
         findViewById(R.id.btn_test4_4_delete).setOnClickListener(new View.OnClickListener() {

@@ -1,7 +1,7 @@
 package com.hm.iou.database;
 
 
-import com.hm.iou.database.table.DebtBookItem;
+import com.hm.iou.database.table.DebtBookDbData;
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class DebtBookDbHelper {
      * @param data
      * @return
      */
-    public static synchronized long insertOrUpdateDebtBook(DebtBookItem data) {
+    public static synchronized long insertOrUpdateDebtBook(DebtBookDbData data) {
         return data.save();
     }
 
@@ -31,7 +31,7 @@ public class DebtBookDbHelper {
      * @return
      */
     public static synchronized int deleteDebtBookById(String autoId) {
-        return SugarRecord.deleteAll(DebtBookItem.class, "auto_id = ?", autoId);
+        return SugarRecord.deleteAll(DebtBookDbData.class, "auto_id = ?", autoId);
     }
 
     /**
@@ -40,7 +40,7 @@ public class DebtBookDbHelper {
      * @return
      */
     public static synchronized int deleteAllDebtBookData() {
-        return SugarRecord.deleteAll(DebtBookItem.class);
+        return SugarRecord.deleteAll(DebtBookDbData.class);
     }
 
     /**
@@ -48,7 +48,7 @@ public class DebtBookDbHelper {
      *
      * @param list
      */
-    public static synchronized void saveOrUpdateDebtBookList(List<DebtBookItem> list) {
+    public static synchronized void saveOrUpdateDebtBookList(List<DebtBookDbData> list) {
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -61,8 +61,8 @@ public class DebtBookDbHelper {
      * @param autoId
      * @return
      */
-    public static synchronized List<DebtBookItem> queryDebtBookListById(String autoId) {
-        List<DebtBookItem> list = SugarRecord.find(DebtBookItem.class, "auto_id = ?",
+    public static synchronized List<DebtBookDbData> queryDebtBookListById(String autoId) {
+        List<DebtBookDbData> list = SugarRecord.find(DebtBookDbData.class, "auto_id = ?",
                 new String[]{autoId}, null, "create_time asc", null);
         return list;
     }
@@ -72,7 +72,7 @@ public class DebtBookDbHelper {
      *
      * @return
      */
-    public static synchronized List<DebtBookItem> queryDebtBookAllDataList() {
-        return DebtBookItem.listAll(DebtBookItem.class);
+    public static synchronized List<DebtBookDbData> queryDebtBookAllDataList() {
+        return DebtBookDbData.listAll(DebtBookDbData.class);
     }
 }

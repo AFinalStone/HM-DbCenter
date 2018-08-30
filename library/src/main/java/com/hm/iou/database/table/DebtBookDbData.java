@@ -9,7 +9,7 @@ import com.orm.dsl.Column;
  * @time 2018/6/7 上午10:26
  * 记债本内容
  */
-public class DebtBookItem extends SugarRecord {
+public class DebtBookDbData extends SugarRecord {
 
 
     /**
@@ -99,7 +99,7 @@ public class DebtBookItem extends SugarRecord {
 
     @Override
     public String toString() {
-        return "DebtBookItem{" +
+        return "DebtBookDbData{" +
                 "autoId='" + autoId + '\'' +
                 ", content='" + content + '\'' +
                 ", createTime='" + createTime + '\'' +
