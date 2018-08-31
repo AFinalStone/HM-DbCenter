@@ -2,6 +2,7 @@ package com.hm.iou.database;
 
 
 import com.hm.iou.database.table.DebtBookDbData;
+import com.hm.iou.database.table.MsgCenterDbData;
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -68,23 +69,30 @@ public class DebtBookDbHelper {
     }
 
     /**
-     * 查询全部的记债本数据
+     * 根据类型查询记债本
      *
-     * @return
-     */
-    public static synchronized List<DebtBookDbData> queryDebtBookAllDataList() {
-        return DebtBookDbData.listAll(DebtBookDbData.class);
-    }
-
-    /**
-     * 获取类型查询记债本
-     *
-     * @param type TabAll(0, "记债本"), TabHumanFeel(1, "人情债"), TabFamily(2, "亲情债"), TabMoney(3, "金钱债"), TabConvenientlyRecord(4, "随手记");
+     * @param type TabAll(0, "全部记债本"), TabHumanFeel(1, "人情债"), TabFamily(2, "亲情债"), TabMoney(3, "金钱债"), TabConvenientlyRecord(4, "随手记");
      * @return
      */
     public static synchronized List<DebtBookDbData> queryDebtBookListByType(int type) {
+        if (type == 0) {
+            return DebtBookDbData.listAll(DebtBookDbData.class);
+        }
         List<DebtBookDbData> list = SugarRecord.find(DebtBookDbData.class, "type = ?",
                 new String[]{String.valueOf(type)}, null, "create_time asc", null);
         return list;
+    }
+
+    /**
+     * 根据类型查询记债本数量
+     *
+     * @param type TabAll(0, "全部记债本"), TabHumanFeel(1, "人情债"), TabFamily(2, "亲情债"), TabMoney(3, "金钱债"), TabConvenientlyRecord(4, "随手记");
+     * @return
+     */
+    public static synchronized long queryDebtBookListCount(int type) {
+        if (type == 0) {
+            return SugarRecord.count(DebtBookDbData.class);
+        }
+        return SugarRecord.count(DebtBookDbData.class, "type = ?", new String[]{String.valueOf(type)});
     }
 }

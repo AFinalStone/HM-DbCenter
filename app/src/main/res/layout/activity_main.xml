@@ -137,5 +137,12 @@
             android:text="清空全部记债本数据"
             android:textColor="@color/uikit_red" />
 
+        <Button
+            android:id="@+id/btn_test4_6_queryCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查询数量"
+            android:textColor="@color/uikit_red" />
+
     </LinearLayout>
 </ScrollView>

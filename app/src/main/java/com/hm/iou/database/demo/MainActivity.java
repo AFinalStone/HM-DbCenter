@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test4_2_query).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<DebtBookDbData> list = DebtBookDbHelper.queryDebtBookAllDataList();
+                List<DebtBookDbData> list = DebtBookDbHelper.queryDebtBookListByType(0);
                 for (DebtBookDbData item : list) {
                     Log.d("记债本", "数据: " + item.toString());
                 }
@@ -271,6 +271,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DebtBookDbHelper.deleteAllDebtBookData();
+            }
+        });
+        findViewById(R.id.btn_test4_6_queryCount).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long num = DebtBookDbHelper.queryDebtBookListCount(0);
+                Log.d("记债本", "全部数量: " + num);
+                num = DebtBookDbHelper.queryDebtBookListCount(1);
+                Log.d("记债本", "人情债数量: " + num);
             }
         });
 
