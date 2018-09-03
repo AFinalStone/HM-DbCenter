@@ -2,7 +2,6 @@ package com.hm.iou.database;
 
 
 import com.hm.iou.database.table.DebtBookDbData;
-import com.hm.iou.database.table.MsgCenterDbData;
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -64,7 +63,7 @@ public class DebtBookDbHelper {
      */
     public static synchronized List<DebtBookDbData> queryDebtBookListById(String autoId) {
         List<DebtBookDbData> list = SugarRecord.find(DebtBookDbData.class, "auto_id = ?",
-                new String[]{autoId}, null, "create_time asc", null);
+                new String[]{autoId}, null, "debt_time desc", null);
         return list;
     }
 
@@ -76,11 +75,11 @@ public class DebtBookDbHelper {
      */
     public static synchronized List<DebtBookDbData> queryDebtBookListByType(int type) {
         if (type == 0) {
-            return DebtBookDbData.listAll(DebtBookDbData.class);
+            return SugarRecord.find(DebtBookDbData.class, null,
+                    null, null, "debt_time desc", null);
         }
-        List<DebtBookDbData> list = SugarRecord.find(DebtBookDbData.class, "type = ?",
-                new String[]{String.valueOf(type)}, null, "create_time asc", null);
-        return list;
+        return SugarRecord.find(DebtBookDbData.class, "type = ?",
+                new String[]{String.valueOf(type)}, null, "debt_time desc", null);
     }
 
     /**
