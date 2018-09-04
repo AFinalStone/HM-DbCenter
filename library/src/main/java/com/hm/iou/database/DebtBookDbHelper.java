@@ -70,11 +70,11 @@ public class DebtBookDbHelper {
     /**
      * 根据类型查询记债本
      *
-     * @param type TabAll(0, "全部记债本"), TabHumanFeel(1, "人情债"), TabFamily(2, "亲情债"), TabMoney(3, "金钱债"), TabConvenientlyRecord(4, "随手记");
+     * @param type TabAll(-1, "记债本")，TabConvenientlyRecord(0, "随手记"), TabHumanFeel(1, "人情债"), TabFamily(2, "亲情债"), TabMoney(3, "金钱债");
      * @return
      */
     public static synchronized List<DebtBookDbData> queryDebtBookListByType(int type) {
-        if (type == 0) {
+        if (type == -1) {
             return SugarRecord.find(DebtBookDbData.class, null,
                     null, null, "debt_time desc", null);
         }
@@ -85,11 +85,11 @@ public class DebtBookDbHelper {
     /**
      * 根据类型查询记债本数量
      *
-     * @param type TabAll(0, "全部记债本"), TabHumanFeel(1, "人情债"), TabFamily(2, "亲情债"), TabMoney(3, "金钱债"), TabConvenientlyRecord(4, "随手记");
+     * @param type TabAll(-1, "记债本")，TabConvenientlyRecord(0, "随手记"), TabHumanFeel(1, "人情债"), TabFamily(2, "亲情债"), TabMoney(3, "金钱债");
      * @return
      */
     public static synchronized long queryDebtBookListCount(int type) {
-        if (type == 0) {
+        if (type == -1) {
             return SugarRecord.count(DebtBookDbData.class);
         }
         return SugarRecord.count(DebtBookDbData.class, "type = ?", new String[]{String.valueOf(type)});
