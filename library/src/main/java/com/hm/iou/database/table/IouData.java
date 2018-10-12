@@ -86,9 +86,9 @@ public class IouData extends SugarRecord {
     private String othersMobile;
 
 
-    private int fieldFour;      //预留字段4 平台借条为安全指数，为0的时候表示安全指数未知
+    private String fieldFour;      //预留字段4 平台借条为安全指数，为0的时候表示安全指数未知
     private String fieldOne;    //预留字段1 平台借条为agencyId 机构id AgencyType为1,2时关联至T_IOUAgencyPlatform 当AgencyType为3时,其为相应的枚举 ,
-    private int fieldThree;     //预留字段3 平台借条为AgencyType 1-p2p 2-信用卡 3-房贷/抵押贷/信用贷 4-自定义 ,
+    private String fieldThree;     //预留字段3 平台借条为AgencyType 1-p2p 2-信用卡 3-房贷/抵押贷/信用贷 4-自定义 ,
 
     public String getIouId() {
         return iouId;
@@ -421,11 +421,11 @@ public class IouData extends SugarRecord {
         this.othersMobile = othersMobile;
     }
 
-    public int getFieldFour() {
+    public String getFieldFour() {
         return fieldFour;
     }
 
-    public void setFieldFour(int fieldFour) {
+    public void setFieldFour(String fieldFour) {
         this.fieldFour = fieldFour;
     }
 
@@ -437,11 +437,11 @@ public class IouData extends SugarRecord {
         this.fieldOne = fieldOne;
     }
 
-    public int getFieldThree() {
+    public String getFieldThree() {
         return fieldThree;
     }
 
-    public void setFieldThree(int fieldThree) {
+    public void setFieldThree(String fieldThree) {
         this.fieldThree = fieldThree;
     }
 
