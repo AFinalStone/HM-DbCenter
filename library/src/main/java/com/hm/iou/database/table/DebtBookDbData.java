@@ -32,6 +32,7 @@ public class DebtBookDbData extends SugarRecord {
     private int ifHaveImg;//是否有图片、1=有，0=无
     private String locationInfo;
     private int type;//0 = 随手记、1 =人情债、2=亲情债、3=金钱债
+    private String coverImg;//封面图片
 
     public String getAutoId() {
         return autoId;
@@ -97,6 +98,14 @@ public class DebtBookDbData extends SugarRecord {
         this.type = type;
     }
 
+    public String getCoverImg() {
+        return coverImg;
+    }
+
+    public void setCoverImg(String coverImg) {
+        this.coverImg = coverImg;
+    }
+
     @Override
     public String toString() {
         return "DebtBookDbData{" +
@@ -108,6 +117,7 @@ public class DebtBookDbData extends SugarRecord {
                 ", ifHaveImg=" + ifHaveImg +
                 ", locationInfo='" + locationInfo + '\'' +
                 ", type=" + type +
+                ", coverImg='" + coverImg + '\'' +
                 '}';
     }
 }
