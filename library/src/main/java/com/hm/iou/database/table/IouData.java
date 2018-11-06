@@ -4,8 +4,8 @@ import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
-import com.orm.dsl.Column;
-import com.orm.dsl.Ignore;
+import com.orm.annotation.Column;
+import com.orm.annotation.Ignore;
 
 import org.json.JSONArray;
 import org.json.JSONException;

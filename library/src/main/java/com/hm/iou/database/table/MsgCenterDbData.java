@@ -2,8 +2,7 @@ package com.hm.iou.database.table;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
-import com.orm.dsl.Column;
-import com.orm.dsl.Unique;
+import com.orm.annotation.Column;
 
 /**
  * @author syl

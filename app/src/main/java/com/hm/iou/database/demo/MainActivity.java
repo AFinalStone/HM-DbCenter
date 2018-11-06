@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.hm.iou.database.CommentDbHelper;
 import com.hm.iou.database.DebtBookDbHelper;
@@ -287,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void login() {
-        String pwd = MD5.hexdigest("123456".getBytes());
+        String pwd = MD5.hexdigest("111111".getBytes());
         MobileLoginReqBean reqBean = new MobileLoginReqBean();
         reqBean.setMobile("15967132742");
         reqBean.setQueryPswd(pwd);
@@ -298,11 +299,15 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new Consumer<BaseResponse<UserInfo>>() {
                     @Override
                     public void accept(BaseResponse<UserInfo> userInfoBaseResponse) throws Exception {
-                        ToastUtil.showMessage(MainActivity.this, "登录成功");
-                        UserInfo userInfo = userInfoBaseResponse.getData();
-                        UserManager.getInstance(MainActivity.this).updateOrSaveUserInfo(userInfo);
-                        HttpReqManager.getInstance().setUserId(userInfo.getUserId());
-                        HttpReqManager.getInstance().setToken(userInfo.getToken());
+                        if (userInfoBaseResponse.getErrorCode() == 0) {
+                            ToastUtil.showMessage(MainActivity.this, "登录成功");
+                            UserInfo userInfo = userInfoBaseResponse.getData();
+                            UserManager.getInstance(MainActivity.this).updateOrSaveUserInfo(userInfo);
+                            HttpReqManager.getInstance().setUserId(userInfo.getUserId());
+                            HttpReqManager.getInstance().setToken(userInfo.getToken());
+                        } else {
+                            ToastUtil.showMessage(MainActivity.this, "登录失败");
+                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override

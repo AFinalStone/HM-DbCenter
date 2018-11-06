@@ -25,8 +25,8 @@ public class JietiaoApplication extends Application {
         initNetwork();
         BaseBizAppLike appLike = new BaseBizAppLike();
         appLike.onCreate(this);
-        appLike.initServer("http://192.168.1.254", "http://192.168.1.254",
-                "http://192.168.1.254");
+        appLike.initServer("http://192.168.1.217", "http://192.168.1.217",
+                "http://192.168.1.217");
 
 
         SugarContext.init(this);
@@ -45,7 +45,7 @@ public class JietiaoApplication extends Application {
                 .setAppChannel("guanfang")
                 .setAppVersion("1.0.2")
                 .setDeviceId("123abc123")
-                .setBaseUrl("http://192.168.1.254")
+                .setBaseUrl("http://192.168.1.217")
                 .setUserId(UserManager.getInstance(this).getUserId())
                 .setToken(UserManager.getInstance(this).getToken())
                 .build();

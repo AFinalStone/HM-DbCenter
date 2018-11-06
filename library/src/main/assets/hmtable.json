@@ -1,0 +1,6 @@
+[
+  "com.hm.iou.database.table.DebtBookDbData",
+  "com.hm.iou.database.table.IouComment",
+  "com.hm.iou.database.table.IouData",
+  "com.hm.iou.database.table.MsgCenterDbData"
+]
