@@ -378,7 +378,7 @@ public final class ReflectionUtil {
     private static List<String> getAllTableClasses() {
         try {
             AssetManager assetManager = ContextUtil.getAssets();
-            InputStream is = assetManager.open("hmtable.json");
+            InputStream is = assetManager.open("dbcenter_table.json");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             StringBuilder sb = new StringBuilder();
             String s;
