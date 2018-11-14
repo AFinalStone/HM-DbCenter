@@ -87,8 +87,9 @@ public class IouData extends SugarRecord {
 
 
     private String fieldFour;      //预留字段4 平台借条为安全指数，为0的时候表示安全指数未知
-    private String fieldOne;    //预留字段1 平台借条为agencyId 机构id AgencyType为1,2时关联至T_IOUAgencyPlatform 当AgencyType为3时,其为相应的枚举 ,
-    private String fieldThree;     //预留字段3 平台借条为AgencyType 1-p2p 2-信用卡 3-房贷/抵押贷/信用贷 4-自定义 ,
+    private String fieldOne;    //预留字段1 平台借条为agencyId 机构id AgencyType为1,2时关联至T_IOUAgencyPlatform 当AgencyType为3时,其为相应的枚举 ,     【资金借条】：逾期利率中文描述 ,
+    private String fieldThree;     //预留字段3 平台借条为AgencyType 1-p2p 2-信用卡 3-房贷/抵押贷/信用贷 4-自定义    资金借条：为逾期利率-OverdueInterestType枚举【OverdueInterestTypeEnum】 ,
+    private String fieldTwo;       //【资金借条】：上诉平台名称-LawPlatform
 
     public String getIouId() {
         return iouId;
@@ -443,6 +444,14 @@ public class IouData extends SugarRecord {
 
     public void setFieldThree(String fieldThree) {
         this.fieldThree = fieldThree;
+    }
+
+    public String getFieldTwo() {
+        return fieldTwo;
+    }
+
+    public void setFieldTwo(String fieldTwo) {
+        this.fieldTwo = fieldTwo;
     }
 
     /**
