@@ -80,16 +80,23 @@ public class IouData extends SugarRecord {
     private int recvWay;             //收款方式
     private String recvWayName;
 
-    private String idCardNum;       //身份证尾号
+    private String idCardNum;       //借款人身份证尾号
     private int remitWay;           //汇款方式
     private String remitWayName;    //汇款方式名称
-    private String othersMobile;
+    private String othersMobile;    //出借人手机号
 
 
     private String fieldFour;      //预留字段4 平台借条为安全指数，为0的时候表示安全指数未知
     private String fieldOne;    //预留字段1 平台借条为agencyId 机构id AgencyType为1,2时关联至T_IOUAgencyPlatform 当AgencyType为3时,其为相应的枚举 ,     【资金借条】：逾期利率中文描述 ,
     private String fieldThree;     //预留字段3 平台借条为AgencyType 1-p2p 2-信用卡 3-房贷/抵押贷/信用贷 4-自定义    资金借条：为逾期利率-OverdueInterestType枚举【OverdueInterestTypeEnum】 ,
     private String fieldTwo;       //【资金借条】：上诉平台名称-LawPlatform
+
+    private String borrowerEmail;     //借到方邮箱
+    private String borrowerMobile;    //借款人手机号
+    private String loanerEmail;       //出借方邮箱
+    private String loanerIDCardwith;    //出借人身份证后6位
+    private String nextReturnDate;      //最近归还时间,格式yyyy-MM-dd HH:mm:ss【借条V2用】
+    private String returnWayDesc;           //归还方式 1, 一次性付清, 2, 按年分期归还,3,按季度分期归还,4,按月分期归还
 
     public String getIouId() {
         return iouId;
@@ -452,6 +459,54 @@ public class IouData extends SugarRecord {
 
     public void setFieldTwo(String fieldTwo) {
         this.fieldTwo = fieldTwo;
+    }
+
+    public String getBorrowerEmail() {
+        return borrowerEmail;
+    }
+
+    public void setBorrowerEmail(String borrowerEmail) {
+        this.borrowerEmail = borrowerEmail;
+    }
+
+    public String getBorrowerMobile() {
+        return borrowerMobile;
+    }
+
+    public void setBorrowerMobile(String borrowerMobile) {
+        this.borrowerMobile = borrowerMobile;
+    }
+
+    public String getLoanerEmail() {
+        return loanerEmail;
+    }
+
+    public void setLoanerEmail(String loanerEmail) {
+        this.loanerEmail = loanerEmail;
+    }
+
+    public String getLoanerIDCardwith() {
+        return loanerIDCardwith;
+    }
+
+    public void setLoanerIDCardwith(String loanerIDCardwith) {
+        this.loanerIDCardwith = loanerIDCardwith;
+    }
+
+    public String getNextReturnDate() {
+        return nextReturnDate;
+    }
+
+    public void setNextReturnDate(String nextReturnDate) {
+        this.nextReturnDate = nextReturnDate;
+    }
+
+    public String getReturnWayDesc() {
+        return returnWayDesc;
+    }
+
+    public void setReturnWayDesc(String returnWayDesc) {
+        this.returnWayDesc = returnWayDesc;
     }
 
     /**
