@@ -98,6 +98,8 @@ public class IouData extends SugarRecord {
     private String nextReturnDate;      //最近归还时间,格式yyyy-MM-dd HH:mm:ss【借条V2用】
     private String returnWayDesc;           //归还方式 1, 一次性付清, 2, 按年分期归还,3,按季度分期归还,4,按月分期归还
 
+    private int extStatus;      //扩展合同状态，0=无状态，1=【新】
+
     public String getIouId() {
         return iouId;
     }
@@ -507,6 +509,14 @@ public class IouData extends SugarRecord {
 
     public void setReturnWayDesc(String returnWayDesc) {
         this.returnWayDesc = returnWayDesc;
+    }
+
+    public int getExtStatus() {
+        return extStatus;
+    }
+
+    public void setExtStatus(int extStatus) {
+        this.extStatus = extStatus;
     }
 
     /**
