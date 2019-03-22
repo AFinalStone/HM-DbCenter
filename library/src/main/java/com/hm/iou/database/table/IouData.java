@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +64,7 @@ public class IouData extends SugarRecord {
     private int thingsType;             //区分钱、物
 
     @Ignore
-    private Map<String, String> attachFileMap;  //图片
+    private LinkedHashMap<String, String> attachFileMap;  //图片
 
     private String fileList;            //JsonArray格式的字符串
 
@@ -300,11 +301,11 @@ public class IouData extends SugarRecord {
         this.transDeadLine = transDeadLine;
     }
 
-    public Map<String, String> getAttachFileMap() {
+    public LinkedHashMap<String, String> getAttachFileMap() {
         return attachFileMap;
     }
 
-    public void setAttachFileMap(Map<String, String> attachFileMap) {
+    public void setAttachFileMap(LinkedHashMap<String, String> attachFileMap) {
         this.attachFileMap = attachFileMap;
     }
 
