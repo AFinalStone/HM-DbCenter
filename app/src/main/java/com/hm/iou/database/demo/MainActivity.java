@@ -9,10 +9,12 @@ import android.widget.Toast;
 import com.hm.iou.database.CommentDbHelper;
 import com.hm.iou.database.DebtBookDbHelper;
 import com.hm.iou.database.IouDbHelper;
+import com.hm.iou.database.LockSignDbHelper;
 import com.hm.iou.database.MsgCenterDbHelper;
 import com.hm.iou.database.table.DebtBookDbData;
 import com.hm.iou.database.table.IouComment;
 import com.hm.iou.database.table.IouData;
+import com.hm.iou.database.table.LockSignDbData;
 import com.hm.iou.database.table.MsgCenterDbData;
 import com.hm.iou.logger.Logger;
 import com.hm.iou.network.HttpReqManager;
@@ -281,6 +283,27 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("记债本", "全部数量: " + num);
                 num = DebtBookDbHelper.queryDebtBookListCount(1);
                 Log.d("记债本", "人情债数量: " + num);
+            }
+        });
+        findViewById(R.id.btn_query_lock_sign_db).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List list = new ArrayList();
+                LockSignDbData dbData = new LockSignDbData();
+                dbData.setJusticeId("0001");
+                dbData.setContent("0001的正文内容");
+                dbData.setGenDateStr("2018-06-23 03:55:30");
+                list.add(dbData);
+                dbData = new LockSignDbData();
+                dbData.setJusticeId("0002");
+                dbData.setContent("0002的正文内容");
+                dbData.setGenDateStr("2018-07-23 03:55:30");
+                list.add(dbData);
+                LockSignDbHelper.saveOrUpdateLockSignDataList(list);
+                List<LockSignDbData> result = LockSignDbHelper.queryLockSignDataList();
+                for (LockSignDbData data : result) {
+                    Logger.d("data==" + data.toString());
+                }
             }
         });
 

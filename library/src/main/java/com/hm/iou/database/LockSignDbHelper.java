@@ -1,7 +1,6 @@
 package com.hm.iou.database;
 
 
-import com.hm.iou.database.table.DebtBookDbData;
 import com.hm.iou.database.table.LockSignDbData;
 import com.orm.SugarRecord;
 
@@ -19,7 +18,7 @@ public class LockSignDbHelper {
      *
      * @param list
      */
-    public static synchronized void saveOrUpdateDebtBookList(List<LockSignDbData> list) {
+    public static synchronized void saveOrUpdateLockSignDataList(List<LockSignDbData> list) {
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -31,8 +30,9 @@ public class LockSignDbHelper {
      *
      * @return
      */
-    public static synchronized List<LockSignDbData> queryDebtBookList() {
-        List<LockSignDbData> list = SugarRecord.listAll(LockSignDbData.class);
+    public static synchronized List<LockSignDbData> queryLockSignDataList() {
+        List<LockSignDbData> list = SugarRecord.find(LockSignDbData.class,
+                null, null, null, "datetime(gen_date_str) desc", null);
         if (list == null) {
             list = new ArrayList<>();
         }
