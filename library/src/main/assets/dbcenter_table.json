@@ -3,5 +3,7 @@
   "com.hm.iou.database.table.IouComment",
   "com.hm.iou.database.table.IouData",
   "com.hm.iou.database.table.LockSignDbData",
-  "com.hm.iou.database.table.MsgCenterDbData"
+  "com.hm.iou.database.table.MsgCenterDbData",
+  "com.hm.iou.database.table.FriendData",
+  "com.hm.iou.database.table.FriendApplyRecord"
 ]
