@@ -1,6 +1,7 @@
 package com.hm.iou.database;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.hm.iou.database.table.FriendApplyRecord;
 import com.hm.iou.database.table.FriendData;
@@ -52,8 +53,8 @@ public class FriendDbUtil {
      *
      * @param userId
      */
-    public static synchronized void deleteFriendByUserId(String userId) {
-        SugarRecord.deleteAll(FriendData.class, "friend_id = ?", new String[]{userId});
+    public static synchronized int deleteFriendByUserId(String userId) {
+        return SugarRecord.deleteAll(FriendData.class, "friend_id = ?", new String[]{userId});
     }
 
     /**
@@ -61,8 +62,12 @@ public class FriendDbUtil {
      *
      * @param userId
      */
-    public static synchronized void deleteFriendApplyRecordByUserId(String userId) {
-        SugarRecord.deleteAll(FriendApplyRecord.class, "friend_id = ?", new String[]{userId});
+    public static synchronized int deleteFriendApplyRecordByUserId(String userId) {
+        return SugarRecord.deleteAll(FriendApplyRecord.class, "friend_id = ?", new String[]{userId});
+    }
+
+    public static synchronized int deleteFriendApplyRecordByApplyId(String applyId) {
+        return SugarRecord.deleteAll(FriendApplyRecord.class, "apply_id = ?", new String[]{applyId});
     }
 
     /**
@@ -78,10 +83,21 @@ public class FriendDbUtil {
     /**
      * 获取所有的好友申请记录列表
      *
+     * @param orderByTime "desc"：根据时间降序排列，"asc"：根据时间升序排列
      * @return
      */
-    public static synchronized List<FriendApplyRecord> getApplyRecordList() {
-        List<FriendApplyRecord> list = SugarRecord.listAll(FriendApplyRecord.class);
+    public static synchronized List<FriendApplyRecord> getApplyRecordList(String orderByTime) {
+        String orderBy = null;
+        if (TextUtils.isEmpty(orderByTime)) {
+            orderBy = null;
+        } else {
+            if ("desc".equals(orderByTime)) {
+                orderBy = "apply_time desc";
+            } else if ("asc".equals(orderByTime)) {
+                orderBy = "apply_time asc";
+            }
+        }
+        List<FriendApplyRecord> list = SugarRecord.listAll(FriendApplyRecord.class, orderBy);
         return list;
     }
 

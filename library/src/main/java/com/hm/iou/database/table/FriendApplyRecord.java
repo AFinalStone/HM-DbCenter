@@ -16,6 +16,7 @@ public class FriendApplyRecord extends SugarRecord {
     private String nickName;
     private String applyMsg;
     private int status;                 //状态 0 待同意 1已同意 3已过期
+    private String applyTime;
 
     public String getApplyId() {
         return applyId;
@@ -63,5 +64,13 @@ public class FriendApplyRecord extends SugarRecord {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getApplyTime() {
+        return applyTime;
+    }
+
+    public void setApplyTime(String applyTime) {
+        this.applyTime = applyTime;
     }
 }
