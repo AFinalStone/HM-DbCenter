@@ -14,6 +14,7 @@ public class FriendData extends SugarRecord {
     private String friendId;    //好友userId
     private String stageName;   //备注名
     private String showId;
+    private String imAccId;
 
     public String getAvatarUrl() {
         return avatarUrl;
@@ -53,5 +54,13 @@ public class FriendData extends SugarRecord {
 
     public void setShowId(String showId) {
         this.showId = showId;
+    }
+
+    public String getImAccId() {
+        return imAccId;
+    }
+
+    public void setImAccId(String imAccId) {
+        this.imAccId = imAccId;
     }
 }
