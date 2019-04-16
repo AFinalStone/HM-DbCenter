@@ -151,5 +151,18 @@
             android:text="查询占用签章的列表数据"
             android:textColor="@color/uikit_red" />
 
+        <Button
+            android:id="@+id/btn_query_lock_sign_db"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查询占用签章的列表数据"
+            android:textColor="@color/uikit_red" />
+
+        <Button
+            android:id="@+id/btn_get_contract_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取合同消息" />
+
     </LinearLayout>
 </ScrollView>

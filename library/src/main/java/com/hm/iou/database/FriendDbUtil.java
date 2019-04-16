@@ -1,11 +1,9 @@
 package com.hm.iou.database;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import com.hm.iou.database.table.FriendApplyRecord;
 import com.hm.iou.database.table.FriendData;
-import com.hm.iou.database.table.IouData;
 import com.orm.SugarRecord;
 
 import java.util.List;

@@ -4,18 +4,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.hm.iou.database.CommentDbHelper;
 import com.hm.iou.database.DebtBookDbHelper;
 import com.hm.iou.database.IouDbHelper;
 import com.hm.iou.database.LockSignDbHelper;
 import com.hm.iou.database.MsgCenterDbHelper;
+import com.hm.iou.database.MsgDbHelper;
 import com.hm.iou.database.table.DebtBookDbData;
 import com.hm.iou.database.table.IouComment;
 import com.hm.iou.database.table.IouData;
 import com.hm.iou.database.table.LockSignDbData;
 import com.hm.iou.database.table.MsgCenterDbData;
+import com.hm.iou.database.table.msg.ContractMsgDbData;
 import com.hm.iou.logger.Logger;
 import com.hm.iou.network.HttpReqManager;
 import com.hm.iou.sharedata.UserManager;
@@ -302,6 +303,23 @@ public class MainActivity extends AppCompatActivity {
                 LockSignDbHelper.saveOrUpdateLockSignDataList(list);
                 List<LockSignDbData> result = LockSignDbHelper.queryLockSignDataList();
                 for (LockSignDbData data : result) {
+                    Logger.d("data==" + data.toString());
+                }
+            }
+        });
+        findViewById(R.id.btn_get_contract_msg).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List list = new ArrayList();
+                ContractMsgDbData dbData = new ContractMsgDbData();
+                dbData.setContent("内容");
+                dbData.setTitle("标题");
+                dbData.setCreateTime("11111");
+                dbData.setJumpUrl("wwww.baidu.com");
+                list.add(dbData);
+                MsgDbHelper.saveOrUpdateContractMsgList(list);
+                List<ContractMsgDbData> result = MsgDbHelper.getContractMsgList();
+                for (ContractMsgDbData data : result) {
                     Logger.d("data==" + data.toString());
                 }
             }
