@@ -10,21 +10,20 @@ import com.hm.iou.database.DebtBookDbHelper;
 import com.hm.iou.database.IouDbHelper;
 import com.hm.iou.database.LockSignDbHelper;
 import com.hm.iou.database.MsgCenterDbHelper;
-import com.hm.iou.database.MsgDbHelper;
 import com.hm.iou.database.table.DebtBookDbData;
 import com.hm.iou.database.table.IouComment;
 import com.hm.iou.database.table.IouData;
 import com.hm.iou.database.table.LockSignDbData;
-import com.hm.iou.database.table.MsgCenterDbData;
 import com.hm.iou.database.table.msg.ContractMsgDbData;
+import com.hm.iou.database.table.msg.HmMsgDbData;
 import com.hm.iou.logger.Logger;
 import com.hm.iou.network.HttpReqManager;
 import com.hm.iou.sharedata.UserManager;
 import com.hm.iou.sharedata.model.BaseResponse;
 import com.hm.iou.sharedata.model.UserInfo;
+import com.hm.iou.tools.Md5Util;
 import com.hm.iou.tools.ToastUtil;
 import com.orm.SugarRecord;
-import com.sina.weibo.sdk.utils.MD5;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,60 +121,28 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test3_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<MsgCenterDbData> list = new ArrayList<>();
-                MsgCenterDbData data = new MsgCenterDbData();
-                data.setAutoId("1");
+                List<HmMsgDbData> list = new ArrayList<>();
+                HmMsgDbData data = new HmMsgDbData();
+                data.setContentCollectId("1");
                 data.setTitle("1");
-                data.setType(1);
-                data.setImageUrl("1");
-                data.setPushDate("2018-06-05 12:30:56");
-                MsgCenterDbHelper.addOrUpdateDataToMsgCenter(data);
+                data.setSourceBizType(1);
+                data.setImgUrl("1");
+                data.setStartTime("2018-06-05 12:30:56");
                 list.add(data);
-                data = new MsgCenterDbData();
-                data.setAutoId("2");
-                data.setTitle("2");
-                data.setType(2);
-                data.setImageUrl("2");
-                data.setPushDate("2018-05-05 12:30:56");
-                MsgCenterDbHelper.addOrUpdateDataToMsgCenter(data);
-                list.add(data);
-                data = new MsgCenterDbData();
-                data.setAutoId("3");
-                data.setTitle("3");
-                data.setType(3);
-                data.setImageUrl("3");
-                data.setPushDate("2018-07-05 12:30:56");
-                MsgCenterDbHelper.addOrUpdateDataToMsgCenter(data);
-                list.add(data);
+                MsgCenterDbHelper.saveOrUpdateHmMsgList(list);
             }
         });
         findViewById(R.id.btn_test3_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                MsgCenterDbData data = new MsgCenterDbData();
-//                data.setAutoId("100");
-//                data.setTitle("100");
-//                data.setType(100);
-//                data.setImageUrl("100");
-//                data.setRead(true);
-//                data.setPushDate("2018-06-05 12:31:56");
-//                data.setNotice("系统维护");
                 MsgCenterDbHelper.addOrUpdateNoticeToCache("100", "2018-06-05 12:31:56", "系统维护");
-            }
-        });
-        findViewById(R.id.btn_test3_3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                long count = MsgCenterDbHelper.queryMsgCenterNoReadCount();
-                System.out.println("未读消息数量" + count);
-                System.out.println("============");
             }
         });
         findViewById(R.id.btn_test3_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<MsgCenterDbData> list = MsgCenterDbHelper.queryMsgCenterListData();
-                for (MsgCenterDbData bean : list) {
+                List<HmMsgDbData> list = MsgCenterDbHelper.queryMsgCenterListData();
+                for (HmMsgDbData bean : list) {
                     System.out.println("消息内容" + bean.toString());
                     System.out.println("============");
                 }
@@ -317,8 +284,8 @@ public class MainActivity extends AppCompatActivity {
                 dbData.setCreateTime("11111");
                 dbData.setJumpUrl("wwww.baidu.com");
                 list.add(dbData);
-                MsgDbHelper.saveOrUpdateContractMsgList(list);
-                List<ContractMsgDbData> result = MsgDbHelper.getContractMsgList();
+                MsgCenterDbHelper.saveOrUpdateContractMsgList(list);
+                List<ContractMsgDbData> result = MsgCenterDbHelper.getContractMsgList();
                 for (ContractMsgDbData data : result) {
                     Logger.d("data==" + data.toString());
                 }
@@ -329,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void login() {
-        String pwd = MD5.hexdigest("111111".getBytes());
+        String pwd = Md5Util.getMd5ByString("111111");
         MobileLoginReqBean reqBean = new MobileLoginReqBean();
         reqBean.setMobile("15967132742");
         reqBean.setQueryPswd(pwd);

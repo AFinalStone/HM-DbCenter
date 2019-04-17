@@ -64,28 +64,21 @@
             android:id="@+id/btn_test3_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="向消息中心插入广告，活动，头条"
+            android:text="向条管家消息列表插入广告，活动，头条"
             android:textColor="@color/uikit_cyan" />
 
         <Button
             android:id="@+id/btn_test3_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="向消息中心插入官方公告"
-            android:textColor="@color/uikit_cyan" />
-
-        <Button
-            android:id="@+id/btn_test3_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="获取消息中心未读消息数量"
+            android:text="向条管家消息列表插入官方公告"
             android:textColor="@color/uikit_cyan" />
 
         <Button
             android:id="@+id/btn_test3_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="获取消息中心缓存数据"
+            android:text="获取条管家消息列表缓存数据"
             android:textColor="@color/uikit_cyan" />
 
         <Button
