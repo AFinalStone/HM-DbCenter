@@ -22,6 +22,14 @@ public class FriendDbUtil {
         SugarRecord.deleteAll(FriendApplyRecord.class);
     }
 
+    public static synchronized void deleteFriend() {
+        SugarRecord.deleteAll(FriendData.class);
+    }
+
+    public static synchronized void deleteApplyRecord() {
+        SugarRecord.deleteAll(FriendApplyRecord.class);
+    }
+
     /**
      * 保存或更新好友列表数据
      *
