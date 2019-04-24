@@ -6,7 +6,6 @@ import android.util.Log;
 import com.hm.iou.database.table.msg.ContractMsgDbData;
 import com.hm.iou.database.table.msg.HmMsgDbData;
 import com.hm.iou.database.table.msg.RemindBackMsgDbData;
-import com.hm.iou.database.table.msg.SimilarityContractMsgDbData;
 import com.orm.SugarRecord;
 
 import java.text.SimpleDateFormat;
@@ -65,28 +64,6 @@ public class MsgCenterDbHelper {
     }
 
     /**
-     * 保存或更新疑似合同消息列表
-     *
-     * @param list
-     */
-    public static synchronized void saveOrUpdateSimilarityContractMsgList(List<SimilarityContractMsgDbData> list) {
-        if (list == null || list.isEmpty()) {
-            return;
-        }
-        SugarRecord.saveInTx(list);
-    }
-
-    /**
-     * 获取所有的疑似合同消息列表
-     *
-     * @return
-     */
-    public static synchronized List<SimilarityContractMsgDbData> getSimilarityContractMsgList() {
-        List<SimilarityContractMsgDbData> list = SugarRecord.listAll(SimilarityContractMsgDbData.class);
-        return list;
-    }
-
-    /**
      * 保存或更新条管家消息列表
      *
      * @param list
@@ -122,6 +99,7 @@ public class MsgCenterDbHelper {
         dbData.setContentCollectId(noticeId);
         dbData.setStartTime(pushDate);
         dbData.setNotice(notice);
+        dbData.setSourceBizType(100);
         SugarRecord.saveInTx(dbData);
     }
 
@@ -173,7 +151,6 @@ public class MsgCenterDbHelper {
         SugarRecord.deleteAll(ContractMsgDbData.class);
         SugarRecord.deleteAll(HmMsgDbData.class);
         SugarRecord.deleteAll(RemindBackMsgDbData.class);
-        SugarRecord.deleteAll(SimilarityContractMsgDbData.class);
     }
 
 

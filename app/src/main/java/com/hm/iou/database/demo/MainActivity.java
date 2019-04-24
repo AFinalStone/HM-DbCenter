@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                 dbData.setCreateTime("11111");
                 dbData.setJumpUrl("wwww.baidu.com");
                 list.add(dbData);
-                MsgCenterDbHelper.saveOrUpdateContractMsgList(list);
+                MsgCenterDbHelper.saveOrUpdateContractMsgList(null);
                 List<ContractMsgDbData> result = MsgCenterDbHelper.getContractMsgList();
                 for (ContractMsgDbData data : result) {
                     Logger.d("data==" + data.toString());
