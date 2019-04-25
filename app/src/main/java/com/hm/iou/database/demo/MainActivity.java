@@ -16,6 +16,7 @@ import com.hm.iou.database.table.IouData;
 import com.hm.iou.database.table.LockSignDbData;
 import com.hm.iou.database.table.msg.ContractMsgDbData;
 import com.hm.iou.database.table.msg.HmMsgDbData;
+import com.hm.iou.database.table.msg.RemindBackMsgDbData;
 import com.hm.iou.logger.Logger;
 import com.hm.iou.network.HttpReqManager;
 import com.hm.iou.sharedata.UserManager;
@@ -287,6 +288,22 @@ public class MainActivity extends AppCompatActivity {
                 MsgCenterDbHelper.saveOrUpdateContractMsgList(null);
                 List<ContractMsgDbData> result = MsgCenterDbHelper.getContractMsgList();
                 for (ContractMsgDbData data : result) {
+                    Logger.d("data==" + data.toString());
+                }
+            }
+        });
+        findViewById(R.id.btn_get_remind_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List list = new ArrayList();
+                RemindBackMsgDbData dbData = new RemindBackMsgDbData();
+                dbData.setTitle("标题");
+                dbData.setCreateTime("11111");
+                dbData.setJumpUrl("wwww.baidu.com");
+                list.add(dbData);
+                MsgCenterDbHelper.saveOrUpdateRemindBackMsgList(list);
+                List<RemindBackMsgDbData> result = MsgCenterDbHelper.getRemindBackMsgList();
+                for (RemindBackMsgDbData data : result) {
                     Logger.d("data==" + data.toString());
                 }
             }
