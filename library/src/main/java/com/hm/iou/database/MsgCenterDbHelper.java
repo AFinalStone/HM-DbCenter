@@ -76,17 +76,6 @@ public class MsgCenterDbHelper {
     }
 
     /**
-     * 获取所有的条管家消息列表
-     *
-     * @return
-     */
-    public static synchronized List<HmMsgDbData> getHmMsgList() {
-        List<HmMsgDbData> list = SugarRecord.listAll(HmMsgDbData.class);
-        return list;
-    }
-
-
-    /**
      * 新增或者更新官方公告到消息中心
      *
      * @param noticeId
@@ -118,26 +107,26 @@ public class MsgCenterDbHelper {
     }
 
     /**
-     * 获取消息中心的所有消息列表
+     * 获取所有的条管家消息列表
      *
      * @return
      */
-    public static synchronized List<HmMsgDbData> queryMsgCenterListData() {
-        Date currentDate = new Date(System.currentTimeMillis());
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(currentDate);
-        calendar.add(Calendar.DAY_OF_YEAR, -15);
-        Date outDateFlag = calendar.getTime();
-        String outTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(outDateFlag);
-        Log.e("过期的Date时间：", outTime);
+    public static synchronized List<HmMsgDbData> getHmMsgList() {
+//        Date currentDate = new Date(System.currentTimeMillis());
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(currentDate);
+//        calendar.add(Calendar.DAY_OF_YEAR, -15);
+//        Date outDateFlag = calendar.getTime();
+//        String outTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(outDateFlag);
+//        Log.e("过期的Date时间：", outTime);
         //删除过期的数据
 //        SugarRecord.executeQuery("delete from MSG_CENTER_DB_DATA where datetime(push_date) < datetime(?)", outTime);
-        SugarRecord.deleteAll(HmMsgDbData.class, "datetime(start_time) < datetime(?)", outTime);
+//        SugarRecord.deleteAll(HmMsgDbData.class, "datetime(start_time) < datetime(?)", outTime);
         //获取缓存数据
 //        List<MsgCenterDbData> list = SugarRecord.findWithQuery(MsgCenterDbData.class,
 //                "select * from MSG_CENTER_DB_DATA order by datetime(push_date) desc");
         List<HmMsgDbData> list = SugarRecord.find(HmMsgDbData.class,
-                null, null, null, "datetime(start_time) desc", null);
+                null, null, null, "datetime(start_time) asc", null);
         return list;
     }
 
