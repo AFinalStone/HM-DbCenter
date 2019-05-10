@@ -101,6 +101,9 @@ public class IouData extends SugarRecord {
 
     private int extStatus;      //扩展合同状态，0=无状态，1=【新】
 
+    private String returnMode;                  //还款模式
+    private double exAmount;
+
     public String getIouId() {
         return iouId;
     }
@@ -518,6 +521,22 @@ public class IouData extends SugarRecord {
 
     public void setExtStatus(int extStatus) {
         this.extStatus = extStatus;
+    }
+
+    public String getReturnMode() {
+        return returnMode;
+    }
+
+    public void setReturnMode(String returnMode) {
+        this.returnMode = returnMode;
+    }
+
+    public double getExAmount() {
+        return exAmount;
+    }
+
+    public void setExAmount(double exAmount) {
+        this.exAmount = exAmount;
     }
 
     /**
