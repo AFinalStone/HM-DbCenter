@@ -1,16 +1,12 @@
 package com.hm.iou.database;
 
 
-import android.util.Log;
-
+import com.hm.iou.database.table.msg.AliPayMsgDbData;
 import com.hm.iou.database.table.msg.ContractMsgDbData;
 import com.hm.iou.database.table.msg.HmMsgDbData;
 import com.hm.iou.database.table.msg.RemindBackMsgDbData;
 import com.orm.SugarRecord;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -112,21 +108,31 @@ public class MsgCenterDbHelper {
      * @return
      */
     public static synchronized List<HmMsgDbData> getHmMsgList() {
-//        Date currentDate = new Date(System.currentTimeMillis());
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(currentDate);
-//        calendar.add(Calendar.DAY_OF_YEAR, -15);
-//        Date outDateFlag = calendar.getTime();
-//        String outTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(outDateFlag);
-//        Log.e("过期的Date时间：", outTime);
-        //删除过期的数据
-//        SugarRecord.executeQuery("delete from MSG_CENTER_DB_DATA where datetime(push_date) < datetime(?)", outTime);
-//        SugarRecord.deleteAll(HmMsgDbData.class, "datetime(start_time) < datetime(?)", outTime);
-        //获取缓存数据
-//        List<MsgCenterDbData> list = SugarRecord.findWithQuery(MsgCenterDbData.class,
-//                "select * from MSG_CENTER_DB_DATA order by datetime(push_date) desc");
         List<HmMsgDbData> list = SugarRecord.find(HmMsgDbData.class,
                 null, null, null, "datetime(start_time) asc", null);
+        return list;
+    }
+
+
+    /**
+     * 保存更新支付宝回单消息列表
+     *
+     * @param list
+     */
+    public static synchronized void saveOrUpdateAliPayMsgList(List<AliPayMsgDbData> list) {
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+        SugarRecord.saveInTx(list);
+    }
+
+    /**
+     * 获取支付宝回单消息列表
+     *
+     * @return
+     */
+    public static synchronized List<AliPayMsgDbData> getAliPayMsgList() {
+        List<AliPayMsgDbData> list = SugarRecord.listAll(AliPayMsgDbData.class);
         return list;
     }
 
