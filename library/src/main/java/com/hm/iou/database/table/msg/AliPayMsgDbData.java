@@ -1,12 +1,10 @@
 package com.hm.iou.database.table.msg;
 
-import com.orm.SugarRecord;
-
 /**
  * @author syl
  * @time 2019/4/16 3:27 PM
  */
-public class AliPayMsgDbData extends SugarRecord {
+public class AliPayMsgDbData extends BaseMsgDbData {
 
     /**
      * content : string
@@ -19,6 +17,7 @@ public class AliPayMsgDbData extends SugarRecord {
     private String title;
     private String content;
     private String jumpUrl;
+
 
     public String getCreateTime() {
         return createTime;
@@ -52,4 +51,13 @@ public class AliPayMsgDbData extends SugarRecord {
         this.jumpUrl = jumpUrl;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "AliPayMsgDbData{" +
+                "createTime='" + createTime + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", jumpUrl='" + jumpUrl + '\'' +
+                '}';
+    }
 }

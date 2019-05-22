@@ -156,5 +156,11 @@
             android:layout_height="wrap_content"
             android:text="提醒归还" />
 
+        <Button
+            android:id="@+id/btn_get_aliPay_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="支付宝回单" />
+
     </LinearLayout>
 </ScrollView>

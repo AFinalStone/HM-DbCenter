@@ -14,6 +14,7 @@ import com.hm.iou.database.table.DebtBookDbData;
 import com.hm.iou.database.table.IouComment;
 import com.hm.iou.database.table.IouData;
 import com.hm.iou.database.table.LockSignDbData;
+import com.hm.iou.database.table.msg.AliPayMsgDbData;
 import com.hm.iou.database.table.msg.ContractMsgDbData;
 import com.hm.iou.database.table.msg.HmMsgDbData;
 import com.hm.iou.database.table.msg.RemindBackMsgDbData;
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 data.setImgUrl("1");
                 data.setStartTime("2018-06-05 12:30:56");
                 list.add(data);
-                MsgCenterDbHelper.saveOrUpdateHmMsgList(list);
+                MsgCenterDbHelper.saveOrUpdateMsgList(list);
             }
         });
         findViewById(R.id.btn_test3_2).setOnClickListener(new View.OnClickListener() {
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test3_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<HmMsgDbData> list = MsgCenterDbHelper.queryMsgCenterListData();
+                List<HmMsgDbData> list = MsgCenterDbHelper.getMsgList(HmMsgDbData.class);
                 for (HmMsgDbData bean : list) {
                     System.out.println("消息内容" + bean.toString());
                     System.out.println("============");
@@ -285,8 +286,8 @@ public class MainActivity extends AppCompatActivity {
                 dbData.setCreateTime("11111");
                 dbData.setJumpUrl("wwww.baidu.com");
                 list.add(dbData);
-                MsgCenterDbHelper.saveOrUpdateContractMsgList(null);
-                List<ContractMsgDbData> result = MsgCenterDbHelper.getContractMsgList();
+                MsgCenterDbHelper.saveOrUpdateMsgList(list);
+                List<ContractMsgDbData> result = MsgCenterDbHelper.getMsgList(ContractMsgDbData.class);
                 for (ContractMsgDbData data : result) {
                     Logger.d("data==" + data.toString());
                 }
@@ -301,9 +302,22 @@ public class MainActivity extends AppCompatActivity {
                 dbData.setCreateTime("11111");
                 dbData.setJumpUrl("wwww.baidu.com");
                 list.add(dbData);
-                MsgCenterDbHelper.saveOrUpdateRemindBackMsgList(list);
-                List<RemindBackMsgDbData> result = MsgCenterDbHelper.getRemindBackMsgList();
+                MsgCenterDbHelper.saveOrUpdateMsgList(list);
+                List<RemindBackMsgDbData> result = MsgCenterDbHelper.getMsgList(RemindBackMsgDbData.class);
                 for (RemindBackMsgDbData data : result) {
+                    Logger.d("data==" + data.toString());
+                }
+            }
+        });
+        findViewById(R.id.btn_get_aliPay_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AliPayMsgDbData dbData = new AliPayMsgDbData();
+                dbData.setMsgId("03");
+                dbData.setHaveRead(true);
+                MsgCenterDbHelper.saveOrUpdateMsg(dbData);
+                List<AliPayMsgDbData> result = MsgCenterDbHelper.getMsgList(AliPayMsgDbData.class);
+                for (AliPayMsgDbData data : result) {
                     Logger.d("data==" + data.toString());
                 }
             }

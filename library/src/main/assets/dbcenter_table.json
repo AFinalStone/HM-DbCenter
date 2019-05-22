@@ -8,5 +8,6 @@
   "com.hm.iou.database.table.msg.ContractMsgDbData",
   "com.hm.iou.database.table.msg.HmMsgDbData",
   "com.hm.iou.database.table.msg.AliPayMsgDbData",
+  "com.hm.iou.database.table.msg.SimilarityContractMsgDbData",
   "com.hm.iou.database.table.msg.RemindBackMsgDbData"
 ]

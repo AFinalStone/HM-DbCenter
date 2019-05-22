@@ -6,7 +6,7 @@ import com.orm.SugarRecord;
  * @author syl
  * @time 2019/4/16 3:27 PM
  */
-public class ContractMsgDbData extends SugarRecord {
+public class ContractMsgDbData extends BaseMsgDbData {
 
     /**
      * content : string
@@ -59,16 +59,5 @@ public class ContractMsgDbData extends SugarRecord {
 
     public void setSourceBizType(int sourceBizType) {
         this.sourceBizType = sourceBizType;
-    }
-
-    @Override
-    public String toString() {
-        return "ContractMsgDbData{" +
-                "createTime='" + createTime + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", jumpUrl='" + jumpUrl + '\'' +
-                ", sourceBizType=" + sourceBizType +
-                '}';
     }
 }

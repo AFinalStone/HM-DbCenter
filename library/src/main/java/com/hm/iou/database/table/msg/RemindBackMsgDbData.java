@@ -1,8 +1,6 @@
 package com.hm.iou.database.table.msg;
 
-import com.orm.SugarRecord;
-
-public class RemindBackMsgDbData extends SugarRecord {
+public class RemindBackMsgDbData extends BaseMsgDbData {
     /**
      * createTime : 2019-04-24T01:50:35.115Z
      * iouKind : 0
@@ -17,7 +15,6 @@ public class RemindBackMsgDbData extends SugarRecord {
      * repayAmount : 0
      * title : string
      */
-
     private String createTime;
     private int iouKind;//借条类型: 1:资金借条, 3:娱乐借条, 4:娱乐借条插画,5:平台借条,7:纸质借条,8:纸质收条,9:电子收条,11:资金借条V2 ,
     private String jumpUrl;
@@ -81,6 +78,5 @@ public class RemindBackMsgDbData extends SugarRecord {
     public void setTitle(String title) {
         this.title = title;
     }
-
 
 }
