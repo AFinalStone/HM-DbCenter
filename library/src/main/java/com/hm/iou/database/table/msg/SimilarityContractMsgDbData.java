@@ -13,6 +13,7 @@ public class SimilarityContractMsgDbData extends BaseMsgDbData {
      * iouKind : 0
      * iouStatus : 0
      * jumpUrl : string
+     * justiceId : string
      * loanerName : string
      * returnDate : 2019-04-24T01:50:35.106Z
      * returnWayDesc : string
@@ -24,6 +25,7 @@ public class SimilarityContractMsgDbData extends BaseMsgDbData {
     private int iouKind;
     private int iouStatus;//1=草稿, 2=正式/已签署完, Del(3), Close(4), 5=已结清，12=等待确认，13=超时未签 ,
     private String jumpUrl;
+    private String justiceId;
     private String loanerName;
     private String returnDate;
     private String returnWayDesc;
@@ -108,5 +110,13 @@ public class SimilarityContractMsgDbData extends BaseMsgDbData {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getJusticeId() {
+        return justiceId;
+    }
+
+    public void setJusticeId(String justiceId) {
+        this.justiceId = justiceId;
     }
 }

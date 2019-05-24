@@ -1,6 +1,7 @@
 package com.hm.iou.database;
 
 
+import com.hm.iou.database.table.FriendData;
 import com.hm.iou.database.table.msg.AliPayMsgDbData;
 import com.hm.iou.database.table.msg.BaseMsgDbData;
 import com.hm.iou.database.table.msg.ContractMsgDbData;
@@ -82,6 +83,15 @@ public class MsgCenterDbHelper {
         return true;
     }
 
+
+    /**
+     * 根据疑似合同公证id删除疑似合同数据
+     *
+     * @param justId
+     */
+    public static synchronized int deleteSimilarityContractByJustId(String justId) {
+        return SugarRecord.deleteAll(SimilarityContractMsgDbData.class, "justice_id = ?", new String[]{justId});
+    }
 
     /**
      * 删除所有的消息中心数据
