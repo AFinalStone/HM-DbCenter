@@ -314,12 +314,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AliPayMsgDbData dbData = new AliPayMsgDbData();
                 dbData.setMsgId("03");
-                dbData.setHaveRead(true);
+                dbData.setHaveRead(false);
                 MsgCenterDbHelper.saveOrUpdateMsg(dbData);
                 List<AliPayMsgDbData> result = MsgCenterDbHelper.getMsgList(AliPayMsgDbData.class);
                 for (AliPayMsgDbData data : result) {
                     Logger.d("data==" + data.toString());
                 }
+                long num = MsgCenterDbHelper.getMsgUnReadNum(AliPayMsgDbData.class);
+                Logger.d("num==" + num);
             }
         });
 

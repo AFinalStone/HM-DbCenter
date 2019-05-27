@@ -1,7 +1,6 @@
 package com.hm.iou.database;
 
 
-import com.hm.iou.database.table.FriendData;
 import com.hm.iou.database.table.msg.AliPayMsgDbData;
 import com.hm.iou.database.table.msg.BaseMsgDbData;
 import com.hm.iou.database.table.msg.ContractMsgDbData;
@@ -50,6 +49,30 @@ public class MsgCenterDbHelper {
      */
     public static synchronized <T extends BaseMsgDbData> List<T> getMsgList(Class<T> classOfT) {
         return SugarRecord.listAll(classOfT);
+    }
+
+    /**
+     * 根据msgId获取消息中心消息
+     *
+     * @return
+     */
+    public static synchronized <T extends BaseMsgDbData> T getMsgByMsgId(Class<T> classOfT, String msgId) {
+        List<T> list = SugarRecord.find(classOfT, "msg_id = ?", msgId);
+        if (list == null || list.isEmpty()) {
+            return null;
+        } else {
+            return list.get(0);
+        }
+    }
+
+
+    /**
+     * 获取消息中心未读消息数量
+     *
+     * @return
+     */
+    public static synchronized <T extends BaseMsgDbData> long getMsgUnReadNum(Class<T> classOfT) {
+        return SugarRecord.count(classOfT, "is_have_read = ?", new String[]{"0"});
     }
 
     /**
