@@ -322,6 +322,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 long num = MsgCenterDbHelper.getMsgUnReadNum(AliPayMsgDbData.class);
                 Logger.d("num==" + num);
+                result = MsgCenterDbHelper.getMsgList(AliPayMsgDbData.class, "is_have_read = ?", "0");
+                Logger.d("result.size==" + result.size());
             }
         });
 

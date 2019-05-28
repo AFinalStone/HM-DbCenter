@@ -52,6 +52,15 @@ public class MsgCenterDbHelper {
     }
 
     /**
+     * 获取消息中心列表
+     *
+     * @return
+     */
+    public static synchronized <T extends BaseMsgDbData> List<T> getMsgList(Class<T> classOfT, String whereClause, String... whereArgs) {
+        return SugarRecord.find(classOfT, whereClause, whereArgs);
+    }
+
+    /**
      * 根据msgId获取消息中心消息
      *
      * @return
