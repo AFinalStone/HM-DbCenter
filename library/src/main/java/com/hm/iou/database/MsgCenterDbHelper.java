@@ -74,6 +74,14 @@ public class MsgCenterDbHelper {
         }
     }
 
+    /**
+     * 获取消息中心消息数量
+     *
+     * @return
+     */
+    public static synchronized <T extends BaseMsgDbData> long getMsgNum(Class<T> classOfT) {
+        return SugarRecord.count(classOfT);
+    }
 
     /**
      * 获取消息中心未读消息数量
