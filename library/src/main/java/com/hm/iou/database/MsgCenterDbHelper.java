@@ -105,6 +105,7 @@ public class MsgCenterDbHelper {
         dbData.setMsgId(noticeId);
         dbData.setStartTime(pushDate);
         dbData.setNotice(notice);
+        dbData.setHaveRead(true);
         dbData.setSourceBizType(100);
         SugarRecord.saveInTx(dbData);
     }
