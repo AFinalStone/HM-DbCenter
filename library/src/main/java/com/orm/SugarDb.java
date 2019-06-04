@@ -7,14 +7,13 @@ import android.util.Log;
 import com.orm.helper.ManifestHelper;
 import com.orm.util.SugarCursorFactory;
 
-import static com.orm.util.ContextUtil.getContext;
+import static com.orm.SugarContext.getDbConfiguration;
 import static com.orm.helper.ManifestHelper.getDatabaseVersion;
 import static com.orm.helper.ManifestHelper.getDbName;
-import static com.orm.SugarContext.getDbConfiguration;
+import static com.orm.util.ContextUtil.getContext;
 
 public class SugarDb extends SQLiteOpenHelper {
     private static final String LOG_TAG = "Sugar";
-
     private final SchemaGenerator schemaGenerator;
     private SQLiteDatabase sqLiteDatabase;
     private int openedConnections = 0;
@@ -50,6 +49,7 @@ public class SugarDb extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         schemaGenerator.doUpgrade(sqLiteDatabase, oldVersion, newVersion);
+        SugarContext.mOldVersion = oldVersion;
     }
 
     public synchronized SQLiteDatabase getDB() {
@@ -62,7 +62,7 @@ public class SugarDb extends SQLiteOpenHelper {
 
     @Override
     public synchronized SQLiteDatabase getReadableDatabase() {
-        if(ManifestHelper.isDebugEnabled()) {
+        if (ManifestHelper.isDebugEnabled()) {
             Log.d(LOG_TAG, "getReadableDatabase");
         }
         openedConnections++;
@@ -71,12 +71,12 @@ public class SugarDb extends SQLiteOpenHelper {
 
     @Override
     public synchronized void close() {
-        if(ManifestHelper.isDebugEnabled()) {
+        if (ManifestHelper.isDebugEnabled()) {
             Log.d(LOG_TAG, "getReadableDatabase");
         }
         openedConnections--;
-        if(openedConnections == 0) {
-            if(ManifestHelper.isDebugEnabled()) {
+        if (openedConnections == 0) {
+            if (ManifestHelper.isDebugEnabled()) {
                 Log.d(LOG_TAG, "closing");
             }
             super.close();

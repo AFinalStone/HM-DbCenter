@@ -14,12 +14,13 @@ public class SugarContext {
     private static SugarContext instance = null;
     private SugarDb sugarDb;
     private Map<Object, Long> entitiesMap;
+    public static int mOldVersion = -1;
 
     private SugarContext() {
         this.sugarDb = SugarDb.getInstance();
         this.entitiesMap = Collections.synchronizedMap(new WeakHashMap<Object, Long>());
     }
-    
+
     public static SugarContext getSugarContext() {
         if (instance == null) {
             throw new NullPointerException("SugarContext has not been initialized properly. Call SugarContext.init(Context) in your Application.onCreate() method and SugarContext.terminate() in your Application.onTerminate() method.");
@@ -31,6 +32,7 @@ public class SugarContext {
         ContextUtil.init(context);
         instance = new SugarContext();
         dbConfiguration = null;
+        getSugarContext().getSugarDb().getDB();
     }
 
     public static void init(Context context, SugarDbConfiguration configuration) {

@@ -162,5 +162,11 @@
             android:layout_height="wrap_content"
             android:text="支付宝回单" />
 
+        <Button
+            android:id="@+id/btn_update_db"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="消息中心数据库升级，数据迁移" />
+
     </LinearLayout>
 </ScrollView>

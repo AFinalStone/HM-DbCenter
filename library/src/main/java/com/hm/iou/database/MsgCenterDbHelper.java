@@ -7,6 +7,7 @@ import com.hm.iou.database.table.msg.ContractMsgDbData;
 import com.hm.iou.database.table.msg.HmMsgDbData;
 import com.hm.iou.database.table.msg.RemindBackMsgDbData;
 import com.hm.iou.database.table.msg.SimilarityContractMsgDbData;
+import com.orm.SugarContext;
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * @author syl
  * @time 2018/6/7 上午10:26
+ *
  */
 public class MsgCenterDbHelper {
 
@@ -43,12 +45,21 @@ public class MsgCenterDbHelper {
     }
 
     /**
-     * 获取消息中心列表
+     * 获取消息中心消息列表
      *
      * @return
      */
     public static synchronized <T extends BaseMsgDbData> List<T> getMsgList(Class<T> classOfT) {
-        return SugarRecord.listAll(classOfT);
+        return SugarRecord.find(classOfT, null, null, null, "datetime(create_time) asc", null);
+    }
+
+    /**
+     * 获取消息中心管家消息列表
+     *
+     * @return
+     */
+    public static synchronized List<HmMsgDbData> getHmMsgList() {
+        return SugarRecord.find(HmMsgDbData.class, null, null, null, "datetime(start_time) asc", null);
     }
 
     /**
@@ -131,7 +142,23 @@ public class MsgCenterDbHelper {
      * @param justId
      */
     public static synchronized int deleteSimilarityContractByJustId(String justId) {
-        return SugarRecord.deleteAll(SimilarityContractMsgDbData.class, "justice_id = ?", new String[]{justId});
+        return SugarRecord.deleteAll(SimilarityContractMsgDbData.class, "justice_id = ?", justId);
+    }
+
+
+    /**
+     * 更新数据库
+     */
+    public static synchronized void updateDataTable() {
+        if (SugarContext.mOldVersion == -1) {
+            return;
+        }
+        if (SugarContext.mOldVersion <= 11) { //Version 10 升级到 Version 11
+            BaseMsgDbData.executeQuery("update contract_msg_db_data set type=?, is_have_read=? where msg_id is null", "100", "1");
+            BaseMsgDbData.executeQuery("update hm_msg_db_data set type=?, is_have_read=? where msg_id is not null", "500", "1");
+            BaseMsgDbData.executeQuery("update remind_back_msg_db_data set type=?, is_have_read=? where msg_id is null", "200", "1");
+        }
+
     }
 
     /**
