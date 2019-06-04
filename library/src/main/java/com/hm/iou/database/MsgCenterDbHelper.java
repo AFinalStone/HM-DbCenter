@@ -7,7 +7,6 @@ import com.hm.iou.database.table.msg.ContractMsgDbData;
 import com.hm.iou.database.table.msg.HmMsgDbData;
 import com.hm.iou.database.table.msg.RemindBackMsgDbData;
 import com.hm.iou.database.table.msg.SimilarityContractMsgDbData;
-import com.orm.SugarContext;
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -155,7 +154,7 @@ public class MsgCenterDbHelper {
         if (oldVersion <= 11) { //Version 10 升级到 Version 11
             try {
                 BaseMsgDbData.executeQuery("update contract_msg_db_data set type=?, is_have_read=? where msg_id is null", "100", "1");
-                BaseMsgDbData.executeQuery("update hm_msg_db_data set type=?, is_have_read=? where msg_id is not null", "500", "1");
+                BaseMsgDbData.executeQuery("update hm_msg_db_data set type=?, is_have_read=? where msg_id is null", "500", "1");
                 BaseMsgDbData.executeQuery("update remind_back_msg_db_data set type=?, is_have_read=? where msg_id is null", "200", "1");
             } catch (Exception e) {
                 e.printStackTrace();
