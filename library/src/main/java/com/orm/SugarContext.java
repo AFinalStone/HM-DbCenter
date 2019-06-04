@@ -2,6 +2,7 @@ package com.orm;
 
 import android.content.Context;
 
+import com.hm.iou.database.MsgCenterDbHelper;
 import com.orm.util.ContextUtil;
 
 import java.util.Collections;
@@ -33,6 +34,8 @@ public class SugarContext {
         instance = new SugarContext();
         dbConfiguration = null;
         getSugarContext().getSugarDb().getDB();
+        //消息中心数据库升级
+        MsgCenterDbHelper.updateDataTable(SugarContext.mOldVersion);
     }
 
     public static void init(Context context, SugarDbConfiguration configuration) {

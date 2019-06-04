@@ -332,7 +332,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_update_db).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MsgCenterDbHelper.updateDataTable();
                 List<RemindBackMsgDbData> result = MsgCenterDbHelper.getMsgList(RemindBackMsgDbData.class);
                 for (RemindBackMsgDbData data : result) {
                     Logger.d("data==" + data.toString());

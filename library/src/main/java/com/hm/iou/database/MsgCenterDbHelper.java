@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * @author syl
  * @time 2018/6/7 上午10:26
- *
  */
 public class MsgCenterDbHelper {
 
@@ -149,14 +148,18 @@ public class MsgCenterDbHelper {
     /**
      * 更新数据库
      */
-    public static synchronized void updateDataTable() {
-        if (SugarContext.mOldVersion == -1) {
+    public static synchronized void updateDataTable(int oldVersion) {
+        if (oldVersion == -1) {
             return;
         }
-        if (SugarContext.mOldVersion <= 11) { //Version 10 升级到 Version 11
-            BaseMsgDbData.executeQuery("update contract_msg_db_data set type=?, is_have_read=? where msg_id is null", "100", "1");
-            BaseMsgDbData.executeQuery("update hm_msg_db_data set type=?, is_have_read=? where msg_id is not null", "500", "1");
-            BaseMsgDbData.executeQuery("update remind_back_msg_db_data set type=?, is_have_read=? where msg_id is null", "200", "1");
+        if (oldVersion <= 11) { //Version 10 升级到 Version 11
+            try {
+                BaseMsgDbData.executeQuery("update contract_msg_db_data set type=?, is_have_read=? where msg_id is null", "100", "1");
+                BaseMsgDbData.executeQuery("update hm_msg_db_data set type=?, is_have_read=? where msg_id is not null", "500", "1");
+                BaseMsgDbData.executeQuery("update remind_back_msg_db_data set type=?, is_have_read=? where msg_id is null", "200", "1");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }
