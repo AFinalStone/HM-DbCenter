@@ -143,6 +143,20 @@ public class MsgCenterDbHelper {
         return SugarRecord.deleteAll(SimilarityContractMsgDbData.class, "justice_id = ?", justId);
     }
 
+    /**
+     * 删除所有已读的消息数据
+     *
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static synchronized <T extends BaseMsgDbData> int deleteAllReadMsgData(Class<T> clazz) {
+        return SugarRecord.deleteAll(clazz, "is_have_read = ?", new String[]{"1"});
+    }
+
+    public static synchronized <T extends BaseMsgDbData> void deleteMsgByMsgId(Class<T> clazz, String msgId) {
+        SugarRecord.deleteAll(clazz, "msg_id = ?", msgId);
+    }
 
     /**
      * 更新数据库
