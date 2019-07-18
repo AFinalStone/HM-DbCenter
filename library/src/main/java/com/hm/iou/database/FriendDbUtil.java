@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.hm.iou.database.table.FriendApplyRecord;
 import com.hm.iou.database.table.FriendData;
+import com.hm.iou.database.table.msg.BaseMsgDbData;
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -74,6 +75,23 @@ public class FriendDbUtil {
 
     public static synchronized int deleteFriendApplyRecordByApplyId(String applyId) {
         return SugarRecord.deleteAll(FriendApplyRecord.class, "apply_id = ?", new String[]{applyId});
+    }
+
+    /**
+     * 更新数据库
+     */
+    public static synchronized void updateDataTable(int oldVersion) {
+        if (oldVersion == -1) {
+            return;
+        }
+        if (oldVersion <= 12) { //Version 12 升级到 Version 13
+            try {
+                BaseMsgDbData.executeQuery("update friend_apply_record set sex=?", "3");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     /**
