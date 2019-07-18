@@ -25,7 +25,8 @@ public class FriendApplyRecord extends SugarRecord {
     private String applyId;     //申请记录id
     private String avatarUrl;           //头像
     private String nickName;            //昵称
-    private String applyMsg;            //备注
+    private String applyMsg;            //申请记录的附件信息
+    private String stageName;           //对方为自己设置的备注名称
     private int status;                 //状态 0 待同意 1已同意 3已过期
     private String applyTime;           //申请时间
     private int sex;                //0==女，1=男，3==未知
@@ -92,5 +93,13 @@ public class FriendApplyRecord extends SugarRecord {
 
     public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    public String getStageName() {
+        return stageName;
+    }
+
+    public void setStageName(String stageName) {
+        this.stageName = stageName;
     }
 }

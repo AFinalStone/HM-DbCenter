@@ -86,7 +86,7 @@ public class FriendDbUtil {
         }
         if (oldVersion <= 12) { //Version 12 升级到 Version 13
             try {
-                BaseMsgDbData.executeQuery("update friend_apply_record set sex=?", "3");
+                BaseMsgDbData.executeQuery("update friend_apply_record set sex=?, stage_name=?", "3", "");
             } catch (Exception e) {
                 e.printStackTrace();
             }
