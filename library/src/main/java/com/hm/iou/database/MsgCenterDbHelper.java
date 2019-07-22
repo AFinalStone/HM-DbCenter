@@ -102,6 +102,17 @@ public class MsgCenterDbHelper {
     }
 
     /**
+     * 获取未读消息
+     *
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static synchronized <T extends BaseMsgDbData> List<T> getUnReadMsgList(Class<T> clazz) {
+        return SugarRecord.find(clazz, "is_have_read = ?", new String[]{"0"});
+    }
+
+    /**
      * 新增或者更新官方公告到消息中心
      *
      * @param noticeId
