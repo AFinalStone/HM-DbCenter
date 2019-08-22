@@ -104,6 +104,16 @@ public class IouData extends SugarRecord {
     private String returnMode;                  //还款模式
     private double exAmount;
 
+    //欠条新增字段
+    private String disputeManageCode;
+    //欠款类型
+    private String oweTypeCode;
+    //欠条凭证code
+    private String certTypeCode;
+    //欠条凭证描述
+    private String certTypeDesc;
+
+
     public String getIouId() {
         return iouId;
     }
@@ -537,6 +547,38 @@ public class IouData extends SugarRecord {
 
     public void setExAmount(double exAmount) {
         this.exAmount = exAmount;
+    }
+
+    public String getDisputeManageCode() {
+        return disputeManageCode;
+    }
+
+    public void setDisputeManageCode(String disputeManageCode) {
+        this.disputeManageCode = disputeManageCode;
+    }
+
+    public String getOweTypeCode() {
+        return oweTypeCode;
+    }
+
+    public void setOweTypeCode(String oweTypeCode) {
+        this.oweTypeCode = oweTypeCode;
+    }
+
+    public String getCertTypeCode() {
+        return certTypeCode;
+    }
+
+    public void setCertTypeCode(String certTypeCode) {
+        this.certTypeCode = certTypeCode;
+    }
+
+    public String getCertTypeDesc() {
+        return certTypeDesc;
+    }
+
+    public void setCertTypeDesc(String certTypeDesc) {
+        this.certTypeDesc = certTypeDesc;
     }
 
     /**
