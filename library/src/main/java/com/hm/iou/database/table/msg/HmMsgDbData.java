@@ -1,5 +1,14 @@
 package com.hm.iou.database.table.msg;
 
+import android.text.TextUtils;
+
+import com.orm.annotation.Ignore;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author syl
  * @time 2018/6/7 上午10:26
@@ -21,6 +30,11 @@ public class HmMsgDbData extends BaseMsgDbData {
     private String startTime;
     private String title;        //标题
     private String notice;       //官方公告简介
+    private String content;
+    @Ignore
+    private List<String> imgUrlList;        //图片
+
+    private String imgs;
 
     public String getContentCollectId() {
         return contentCollectId;
@@ -77,4 +91,70 @@ public class HmMsgDbData extends BaseMsgDbData {
     public void setNotice(String notice) {
         this.notice = notice;
     }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public List<String> getImgUrlList() {
+        return imgUrlList;
+    }
+
+    public void setImgUrlList(List<String> imgUrlList) {
+        this.imgUrlList = imgUrlList;
+    }
+
+    public String getImgs() {
+        return imgs;
+    }
+
+    public void setImgs(String imgs) {
+        this.imgs = imgs;
+    }
+
+    /**
+     * 将图片 List 转换为 JSONArray 格式的字符串，便于数据库字段存储
+     */
+    public void convertImgListToString() {
+        if (TextUtils.isEmpty(imgs) && imgUrlList != null && imgUrlList.size() > 0) {
+            try {
+                JSONArray array = new JSONArray();
+                for (String url : imgUrlList) {
+                    array.put(url);
+                }
+                imgs = array.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 从数据库里读取图片数据时，将字符串转换为图片 List
+     *
+     * @return
+     */
+    public List<String> getImgListFromDb() {
+        if (imgUrlList != null)
+            return imgUrlList;
+        if (TextUtils.isEmpty(imgs))
+            return null;
+        try {
+            List<String> list = new ArrayList<>();
+            JSONArray arr = new JSONArray(imgs);
+            for (int i = 0; i < arr.length(); i++) {
+                list.add(arr.getString(i));
+            }
+            imgUrlList = list;
+            return imgUrlList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

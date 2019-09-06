@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.hm.plugin.commconfig'
 
 android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.hm.iou.database.demo"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"

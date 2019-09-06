@@ -8,7 +8,7 @@
             android:value="jietiao.db" />
         <meta-data
             android:name="VERSION"
-            android:value="14" />
+            android:value="15" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="false" />
