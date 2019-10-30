@@ -9,5 +9,7 @@
   "com.hm.iou.database.table.msg.HmMsgDbData",
   "com.hm.iou.database.table.msg.AliPayMsgDbData",
   "com.hm.iou.database.table.msg.SimilarityContractMsgDbData",
-  "com.hm.iou.database.table.msg.RemindBackMsgDbData"
+  "com.hm.iou.database.table.msg.RemindBackMsgDbData",
+  "com.hm.iou.database.table.BorrowSquareScrollData",
+  "com.hm.iou.database.table.BorrowSquareContentData"
 ]
