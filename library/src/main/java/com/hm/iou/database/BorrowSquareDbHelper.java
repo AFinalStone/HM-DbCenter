@@ -59,4 +59,14 @@ public class BorrowSquareDbHelper {
         SugarRecord.update(data);
     }
 
+    public static synchronized long updateShowStatusByApplyId(String applyId, int showStatus) {
+        List<BorrowSquareContentData> list = SugarRecord.find(BorrowSquareContentData.class, "square_apply_id = ?", applyId);
+        if (list != null && list.size() > 0) {
+            BorrowSquareContentData data = list.get(0);
+            data.setShowStatus(showStatus);
+            return data.update();
+        }
+        return 0L;
+    }
+
 }
