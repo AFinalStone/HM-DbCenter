@@ -361,6 +361,11 @@ public class SugarRecord {
         return update(getSugarDataBase(), object);
     }
 
+    public static long update(Class clazz, ContentValues values, String whereClause, String[] args) {
+        SQLiteDatabase db = getSugarDataBase();
+        return db.update(NamingHelper.toTableName(clazz), values, whereClause, args);
+    }
+
     static long update(SQLiteDatabase db, Object object) {
         Map<Object, Long> entitiesMap = getSugarContext().getEntitiesMap();
         List<Field> columns = ReflectionUtil.getTableFields(object.getClass());

@@ -1,5 +1,7 @@
 package com.hm.iou.database;
 
+import android.content.ContentValues;
+
 import com.hm.iou.database.table.BorrowSquareContentData;
 import com.hm.iou.database.table.BorrowSquareScrollData;
 import com.orm.SugarRecord;
@@ -31,11 +33,6 @@ public class BorrowSquareDbHelper {
         }
     }
 
-    public static synchronized void updateSquareScrollData(BorrowSquareScrollData data) {
-        SugarRecord.update(data);
-    }
-
-
     public static synchronized List<BorrowSquareContentData> getAllSquareContentData() {
         return SugarRecord.listAll(BorrowSquareContentData.class);
     }
@@ -55,18 +52,10 @@ public class BorrowSquareDbHelper {
         }
     }
 
-    public static synchronized void updateSquareContentData(BorrowSquareContentData data) {
-        SugarRecord.update(data);
-    }
-
     public static synchronized long updateShowStatusByApplyId(String applyId, int showStatus) {
-        List<BorrowSquareContentData> list = SugarRecord.find(BorrowSquareContentData.class, "square_apply_id = ?", applyId);
-        if (list != null && list.size() > 0) {
-            BorrowSquareContentData data = list.get(0);
-            data.setShowStatus(showStatus);
-            return data.update();
-        }
-        return 0L;
+        ContentValues values = new ContentValues();
+        values.put("show_status", showStatus);
+        return SugarRecord.update(BorrowSquareContentData.class, values, "square_apply_id = ?", new String[]{applyId});
     }
 
 }
