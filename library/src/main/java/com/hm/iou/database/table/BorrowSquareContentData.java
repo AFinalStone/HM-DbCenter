@@ -20,6 +20,8 @@ public class BorrowSquareContentData extends SugarRecord {
 
     public String part;
 
+    public boolean selectMe;
+
     public String getSquareApplyId() {
         return squareApplyId;
     }
@@ -90,5 +92,13 @@ public class BorrowSquareContentData extends SugarRecord {
 
     public void setPart(String part) {
         this.part = part;
+    }
+
+    public boolean isSelectMe() {
+        return selectMe;
+    }
+
+    public void setSelectMe(boolean selectMe) {
+        this.selectMe = selectMe;
     }
 }

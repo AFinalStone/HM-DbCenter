@@ -34,7 +34,6 @@ public class SugarContext {
         ContextUtil.init(context);
         instance = new SugarContext();
         dbConfiguration = null;
-        getSugarContext().getSugarDb().getDB();
         //消息中心数据库升级
         MsgCenterDbHelper.updateDataTable(SugarContext.mOldVersion);
         //好友申请列表数据升级
