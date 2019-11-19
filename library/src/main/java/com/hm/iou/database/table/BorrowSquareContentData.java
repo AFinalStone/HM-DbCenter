@@ -22,6 +22,8 @@ public class BorrowSquareContentData extends SugarRecord {
 
     public boolean selectMe;
 
+    public String avatar;
+
     public String getSquareApplyId() {
         return squareApplyId;
     }
@@ -100,5 +102,13 @@ public class BorrowSquareContentData extends SugarRecord {
 
     public void setSelectMe(boolean selectMe) {
         this.selectMe = selectMe;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
